@@ -1,0 +1,12 @@
+.sidebar{
+position: absolute;
+width: 220px;
+height: 702px;
+left: 2px;
+top: 70px;
+
+background: #FFFFFF;
+box-shadow: 2px 4px 19px rgba(0, 0, 0, 0.25);
+
+}
+
