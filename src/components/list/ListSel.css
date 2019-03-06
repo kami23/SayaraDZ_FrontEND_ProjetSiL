@@ -1,0 +1,15 @@
+.Menu {
+    position: absolute;
+
+    width: 180px;
+    
+    height: 42px;
+    
+    left: 319px;
+    
+    top: 91px;
+    
+    background: #469E8CB0;
+    
+    border-radius: 6px;
+}

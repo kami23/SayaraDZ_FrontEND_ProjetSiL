@@ -7,6 +7,12 @@ import  NavBar from './components/navbar/NavBar'
 import  Login from './components/login/Login' 
 import LogOut from './components/logout/LogOut';
 import LogoName from './components/logoName/LogoName';
+import RegularTables from './components/table/Tables';
+import InputsBar from './components/inputs/Inputs';
+import TopBar from './components/topbar/TopBar';
+import LineSep from './components/lineseparate/LineSep';
+import ListSel from './components/list/ListSel';
+
 
 class App extends Component {
   render() {
@@ -14,7 +20,12 @@ class App extends Component {
       <div>
     <LogoName/>
     <NavBar />
-    <LogOut/>
+    <TopBar/>
+    <LineSep/>
+    <ListSel/>
+    <InputsBar/>
+    <RegularTables/>
+ 
       </div>
     );
   }
