@@ -1,13 +1,26 @@
-.Ajout {
-    width: 3%;
-    height: 14%;
-    left: 1204px; 
-    top: 450px;
-    margin-left: 450px;
+linkImg
+{
+
+width: 30%;
+height: 24px;
+left: 1213px;
+top: 197px;
 }
 
+.Ajout {
+    width: 8%;
+    left: 700px;
+}
 .Tabicons {
-    width: 60%;   
+  width: 7%;  
+  padding-top:230px; 
+  padding-right:20px;  
+}
+.TabiconsMod {
+    width: 63%;   
+}
+.TabiconsDel {
+  width: 45%;   
 }
 
 .TitreTab {
@@ -17,16 +30,12 @@
 
 .Table {
     top : 100px;
-    padding-top: 30PX;
-    border-spacing: 30px;
+    padding-top: 6px;
+    border-spacing: 20px;
     border-collapse: separate;
     padding-right: 30px;
-    /*border-collapse: collapse;
+    left: 30px;
 
-background: #FFFFFF;
-box-shadow: 10px 6px 10px rgba(0, 0, 0, 0.25);
-border-radius: 10px;*/
-    
   }
   
   th {
@@ -70,8 +79,35 @@ border-radius: 10px;*/
     border-radius: 5px
 }
 
-.card {
-  
-
-
+#fname {
+  visibility: hidden;
+  width: 20%;
+  padding: 13px 20px 12px 40px;
+  margin-left: 10px;
+  left: 317px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C4C4C4;
+}
+#fprice {
+  visibility: hidden;
+  width: 20%;
+  padding: 13px 20px 12px 40px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C4C4C4;
+  left: 500px;
+  margin-left: 12px;
+}
+#fsubmit {
+  visibility: hidden;
+  width: 20%;
+  padding: 13px 20px 12px 40px;
+  background: #FCC468;
+  border-radius: 10px;
+  border: 1px solid #C4C4C4;
+  margin-left: 12px;
+}
+#addMod {
+  visibility: hidden;
 }

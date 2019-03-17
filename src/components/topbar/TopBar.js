@@ -8,16 +8,18 @@ import './TopBar.css'
 
 
 class TopBar extends React.Component {
-    
+    activateLasers() {
+      
+    }  
     render() {
       return (
           <div className="topbar">
            <div className="borderDiv">
-            <ul class="topnav">
+            <ul className="topnav">
             <li>HoudaAB</li>
-            <li><a href="#news"><img className="Tabicons" src ={alarm}/></a></li>
+            <li><a href="#news"><img className="TabiconsBell" src ={alarm}/></a></li>
             <li><a href="#news"><img className="Tabiconslogg" src ={loggs}/></a></li>
-            <li><a href="#contact" onclick="activateLasers()"><img className="rotate90" src ={next}/></a></li>
+            <li><a href="#contact" onClick="activateLasers()"><img className="rotate90" src ={next}/></a></li>
 
 </ul>
 
