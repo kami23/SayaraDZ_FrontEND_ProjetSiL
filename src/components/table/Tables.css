@@ -108,6 +108,36 @@ top: 197px;
   border: 1px solid #C4C4C4;
   margin-left: 12px;
 }
+
+#ename {
+  visibility: hidden;
+  width: 20%;
+  padding: 13px 20px 12px 40px;
+  margin-left: 10px;
+  left: 317px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C4C4C4;
+}
+#eprice {
+  visibility: hidden;
+  width: 20%;
+  padding: 13px 20px 12px 40px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #C4C4C4;
+  left: 500px;
+  margin-left: 12px;
+}
+#esubmit {
+  visibility: hidden;
+  width: 20%;
+  padding: 13px 20px 12px 40px;
+  background: #FCC468;
+  border-radius: 10px;
+  border: 1px solid #C4C4C4;
+  margin-left: 12px;
+}
 #addMod {
   visibility: hidden;
 }

@@ -38,7 +38,6 @@ import {
          let tokenStr = 'Token 2615184885246160c19d33ffd2f8ea6b6e11eb29';
             axios({
                 method: 'post',
-               /// url :'http://7806af8b.ngrok.io/api/marque/create/',
                 url: 'https://sayaradz-ee-backend.herokuapp.com/api/modele/create/',
                 
                 headers:{
