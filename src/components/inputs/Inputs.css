@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .myinput1 {
  
     position:absolute;
@@ -62,3 +63,34 @@
   
 
 }
+=======
+.myinput {
+ 
+    position: relative;
+    width: 10%;
+    top: 90px;             
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    margin-left: 12px; /* Add some space below the input */
+    background: #FFFFFF;
+    border-radius: 10px;
+
+
+}
+  
+  .Boutonloop {
+    position: relative;
+    width: 4%;
+    top:90px;   
+    padding:6px 0 6px 0;
+    background: #FCC468;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+  
+    
+
+  }
+>>>>>>> Crud and sideBar

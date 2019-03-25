@@ -54,7 +54,11 @@ ul.topnav {
     ul.topnav li {float: none;}
   }
 
+<<<<<<< HEAD
   .TabiconsBell {
+=======
+  .Tabicons {
+>>>>>>> Crud and sideBar
     width: 60%;   
 }
 

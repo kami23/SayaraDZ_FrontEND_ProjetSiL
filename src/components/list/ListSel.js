@@ -9,7 +9,7 @@ class ListSel extends React.Component {
       return (
         <select name="my_html_select_box" className="Menu">
             <option>Hi </option>
-            <option>Bucharest</option>
+            <option selected="yes">Bucharest</option>
             <option>Madrid</option>
         
       </select> ) }

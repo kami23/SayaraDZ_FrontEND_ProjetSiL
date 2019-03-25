@@ -1,15 +1,12 @@
-.LogOut {
-position: absolute;
-width: 105.08px;
-height: 14.18px;
-left: 1218px;
-top: 26px;
-}
 .logoutText{
     font-family: Nunito;
     font-style: normal;
     font-weight: normal;
     line-height: normal;
  color: #2C2C2C;
-
+ position: absolute;
+ width: 105.08px;
+ height: 14.18px;
+ left: 1218px;
+ top: 26px;
 }
