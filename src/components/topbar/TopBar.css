@@ -1,0 +1,75 @@
+
+.topbar
+{
+position: absolute;
+width: 800px;
+height: 30px;
+left: 500px;
+top: 0px;
+background: #E5E5E5;
+/*border-bottom: 1px solid #9c9a9a;*/
+}
+/*
+position: absolute;
+width: 1135.5px;
+height: 3.33px;
+left: 197.01px;
+top: 58.67px;
+
+border: 1px solid #C2C0BD;
+transform: rotate(0.17deg);
+
+.borderDiv {border-bottom: 1px solid #9c9a9a;}*/
+ul.topnav {
+
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #E5E5E5;
+    text-align: right;
+    
+
+  }
+  
+  ul.topnav li { display: inline-block;}
+  
+  ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+
+  }
+  
+  ul.topnav li a:hover:not(.active) {}
+  
+  ul.topnav li a.active {background-color: #4CAF50;}
+  
+  ul.topnav li.right {float: right;}
+  
+  @media screen and (max-width: 200px) {
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+  }
+
+<<<<<<< HEAD
+  .TabiconsBell {
+=======
+  .Tabicons {
+>>>>>>> Crud and sideBar
+    width: 60%;   
+}
+
+.Tabiconslogg {
+    width: 70%;   
+}
+.rotate90 {
+    width: 60%; 
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
