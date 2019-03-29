@@ -3,9 +3,6 @@
     import LogOut from '../../components/logout/LogOut';
     import NavBar from '../../components/navbar/NavBar';
     import "./HomePage.css"
-    import Home from '../../components/Home';
-    import Contact from '../../components/Contact';
-    import About from '../../components/About';
     import {LoginPage }from '../LoginPage/LoginPage.jsx';
     import { BrowserRouter ,NavLink,Router, Route ,Link, Switch} from 'react-router-dom';
     import routes from '../../routes/routes';
@@ -14,7 +11,6 @@
     import Divider from '@material-ui/core/Divider';
     import Grid from '@material-ui/core/Grid';
     import SideBar from '../../components/navbar/SideBar1'
-    import Menu from '../../components/Menu'
 
     class HomePage extends React.Component {
 

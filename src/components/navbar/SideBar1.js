@@ -6,6 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import Icon from "@material-ui/core/Icon";
+import { withRouter } from 'react-router-dom';
 
 import IconButton from '@material-ui/core/IconButton';
 
@@ -67,11 +68,21 @@ const styles = theme => ({
         },
 
     },
+    menuItemactive: {
+        fontStyle:'bold',
+        backgroundColor: 'red',
+        width: '88%',
+    },
     menuItem: {
         fontStyle:'bold',
         backgroundColor: 'white',
         width: '88%',
-        '&:focus': {
+        ' &:active':{
+            borderLeft: '4px solid #51bcda',
+           backgroundColor: "-webkit-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75), -moz-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),   box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),",
+
+        },
+        '&:focus ': {
             borderLeft: '4px solid #51bcda',
            backgroundColor: "-webkit-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75), -moz-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),   box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),",
         // backgroundColor: '#ebf8fe',
@@ -126,6 +137,18 @@ const styles = theme => ({
 });
 
 class SideBar extends React.Component {
+    componentDidMount(){
+        
+    }
+
+    activeRoute(path){
+        if (this.props.location.pathname===path){
+            return("active")
+        }
+        else {
+            return("")
+        }
+    }
     state = {
         mobileOpen: false,
     };
@@ -144,6 +167,7 @@ class SideBar extends React.Component {
 
     render() {
         const { classes, theme } = this.props;
+        const { location: { pathname } } = this.props;
 
         var brand = (
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
@@ -170,7 +194,9 @@ class SideBar extends React.Component {
                     <h4> Admin </h4>
                 </div>
                 <MenuList className={classes.menu}>
-                    <MenuItem component={Link} to="/Acceuil" className={classes.menuItem}>
+                {console.log("Accauil"+this.activeRoute("/Acceuil"))}
+                    <MenuItem component={Link} to="/Acceuil" className={classes.menuItem+this.activeRoute("/Acceuil")}>
+                    
                         <ListItemIcon>
                             <Icon className={classes.icon}>
                                 home
@@ -178,7 +204,8 @@ class SideBar extends React.Component {
                         </ListItemIcon>
                         Acceuil
             </MenuItem>
-                    <MenuItem component={Link} to="/Acceuil" className={classes.menuItem}>
+                    <MenuItem component={Link} to="/Acceuil" selected={pathname === "/Acceuil"} className={{root:classes.menuItem ,selected:classes.menuItemactive}}>
+                    {console.log(classes.menuItem)}
                         <ListItemIcon>
                             <Icon className={classes.icon} >
                                 insert_drive_file
@@ -200,13 +227,13 @@ class SideBar extends React.Component {
                         <MenuItem component={Link} to="/modeles" button className={classes.nested}>
                             Gestion Modèles
                 </MenuItem>
-                        <MenuItem button className={classes.nested}>
+                        <MenuItem component={Link} to="/versions" button className={classes.nested}>
                             Gestion Versions
                 </MenuItem>
                         <MenuItem button className={classes.nested}>
                             Gestion Couleurs
                 </MenuItem>
-                        <MenuItem button className={classes.nested}>
+                        <MenuItem  component={Link} to="/options" button className={classes.nested}>
                             Gestion Options
                 </MenuItem>
                     </Collapse>
@@ -283,4 +310,4 @@ SideBar.propTypes = {
     theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(SideBar);
+export default withRouter(withStyles(styles, { withTheme: true })(SideBar));

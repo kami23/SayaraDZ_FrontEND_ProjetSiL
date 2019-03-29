@@ -24,23 +24,20 @@
             Modele: Modele
         }
     }
-    export function editModelechangeModele(Modele){
-        return{
-            type: "Edit_Modele",
-            Modele: Modele
-        }
-    }
+    
     
     function createModele(payload){
         return dispatch => {
            
-            ModeleService.post(`https://sayaradz-ee-backend.herokuapp.com/api/modele/create/`, payload)
+            ModeleService.post(payload)
             .then((response)=>{
                 dispatch(createUserInfo());
-                history.push('/modele');
+                history.push('/modeles');
             })
         }
     }
+
+    
     function getModeleById(id){
         return dispatch => {
             ModeleService.getModelebyId(id)
@@ -66,7 +63,7 @@
             ModeleService.put(`https://sayaradz-ee-backend.herokuapp.com/api/modele?idModele=`+id, payload)
             .then((response)=>{
                 dispatch(updatedUserInfo());
-                history.push('/vendor');
+                history.push('/modeles');
             })
         }
     }

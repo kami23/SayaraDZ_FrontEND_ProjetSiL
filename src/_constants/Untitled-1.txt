@@ -1,0 +1,153 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import Typography from '@material-ui/core/Typography';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import { withRouter, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { ModeleAction } from '../_actions';
+
+const drawerWidth = 240;
+  
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+
+            root: {
+                flexGrow: 1,
+            },
+            appFrame: {
+            zIndex: 1,
+            overflow: 'hidden',
+            position: 'relative',
+            display: 'flex',
+            width: '100%',
+            },
+            appBar: {
+            width: `calc(100% - ${drawerWidth}px)`,
+            },
+            'appBar-left': {
+                marginLeft: drawerWidth,
+            },
+            'appBar-right': {
+                marginRight: drawerWidth,
+            },
+            drawerPaper: {
+                position: 'relative',
+                width: drawerWidth,
+            },
+            toolbar: theme.mixins.toolbar,
+            content: {
+                flexGrow: 1,
+                backgroundColor: theme.palette.background.default,
+                padding: theme.spacing.unit * 3,
+            },
+            paper: {
+                position: 'absolute',
+                width: theme.spacing.unit * 50,
+                backgroundColor: theme.palette.background.paper,
+                boxShadow: theme.shadows[5],
+                padding: theme.spacing.unit * 4,
+            },
+            table: {
+                minWidth: 700,
+            },
+        });
+
+class Version extends React.Component {
+  props = {
+    value: '',
+    label: '',
+    elements: [],
+    labelWidth: 0,
+  };
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(ModeleAction.getModele());
+
+  }
+
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
+
+  };
+  state = {
+    age: '',
+    value: ''
+  }
+  render() {
+    const { classes } = this.props;
+    const { elements } = this.props.Modele;
+
+    return (
+      <div className={classes.root}>
+
+        <FormControl required >
+          <InputLabel htmlFor={this.props.label}>{this.props.label}</InputLabel>
+          <Select
+            native
+            value={this.state.value}
+            onChange={this.handleChange('value')}
+            name="value"
+            inputProps={{
+              id: this.props.label,
+            }}
+          >
+            <option value="" />
+            {elements.map(element => {
+              return (
+                <option value={element.idModele}>{element.nomModele}</option>
+              )
+            })}
+
+          </Select>
+        </FormControl>
+
+      </div>
+    );
+  }
+}
+
+Version.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+;
+const mapStateToProps = (state) => {
+  return {
+    Modele: state.Modele.Modele
+  };
+}
+const connectedVersionPage = withRouter(connect(mapStateToProps, null, null, {
+  pure: false
+})(withStyles(styles)(Version)));
+export { connectedVersionPage as Version };

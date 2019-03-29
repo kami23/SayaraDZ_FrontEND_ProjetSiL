@@ -1,6 +1,5 @@
 import React, { Component,Fragment } from 'react'
 import './NavBar.css'
-import ElementNavBar from '../elementNavBar/ElementNavBar'
 import { Nav,NavItem } from "reactstrap";
 import home from '../../assets/icons/home.png'
 import users from '../../assets/icons/users.png'
@@ -73,7 +72,6 @@ class NavBar extends Component {
 
         </div>
         <List >
-        {elements.map(c => <ElementNavBar key={c.text} path={c.path} text={c.text} srcImg={c.icon} ></ElementNavBar>)}
         <ListItem button onClick={this.handleClick}>
           <ListItemText inset primary="Gestion donnée" />
           {this.state.open ? <ExpandLess /> : <ExpandMore />}
@@ -81,21 +79,17 @@ class NavBar extends Component {
         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button className={styles.root}>
-            <ElementNavBar key="gmodeles" path="/modeles" text="Gestion Modeles"  ></ElementNavBar>
             </ListItem>
           
             <ListItem button>
-            <ElementNavBar key="gmodeles" path="/modeles" text="Gestion Modeles"  ></ElementNavBar>
-            </ListItem>
-          
-            <ListItem button>
-          
-            <ElementNavBar key="gmodeles" path="/modeles" text="Gestion Modeles"  ></ElementNavBar>
             </ListItem>
           
             <ListItem button>
           
-            <ElementNavBar key="gmodeles" path="/modeles" text="Gestion Modeles"  ></ElementNavBar>
+            </ListItem>
+          
+            <ListItem button>
+          
             
             </ListItem>
           </List>
