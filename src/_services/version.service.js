@@ -43,8 +43,10 @@ function getVersionbyId(apiEndpoint) {
         })
 }
 
-function put(apiEndpoint, payload) {
-    return axios.put(``, payload, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
+function put(id, payload) {
+
+    return axios.put('https://sayaradz-ee-backend.herokuapp.com/api/version/update/'+id, payload, 
+    { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
         .then((response) => {
             return response;
         }).catch((err) => {

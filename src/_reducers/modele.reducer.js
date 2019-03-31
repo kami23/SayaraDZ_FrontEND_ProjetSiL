@@ -1,7 +1,9 @@
             const initialState = { 
                 Modele: [],
                 idModele:'',
-                nomModele:''
+                nomModele:'',
+                codeModele:'',
+                couleurCompatible:[]
             };
             export function Modele(state = initialState, action) {
                 switch (action.type) {
@@ -18,6 +20,8 @@
                             ...state,
                             idModele: action.idModele,
                             nomModele: action.nomModele,
+                            codeModele: action.codeModele,
+                            couleurCompatible:action.couleurCompatible
                         };
                     case "USER_UPDATED":
                         return state;

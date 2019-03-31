@@ -39,8 +39,9 @@ function getModelebyId(apiEndpoint) {
 
 }
 
-function put(apiEndpoint, payload) {
-    return axios.put(apiEndpoint, payload, getOptions())
+function put(id, payload) {
+    
+    return axios.put('https://sayaradz-ee-backend.herokuapp.com/api/modele/update/'+id+'/', payload)
         .then((response) => {
             return response;
         }).catch((err) => {

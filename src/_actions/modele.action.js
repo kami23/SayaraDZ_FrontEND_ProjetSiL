@@ -50,7 +50,9 @@
         return{
             type: "Modele_DETAIL",
             idModele:Modele[0].idModele,
-            nomModele:Modele[0].nomModele
+            nomModele:Modele[0].nomModele,
+            codeModele:Modele[0].codeModele,
+            couleurCompatible:Modele[0].couleurCompatible
         }
     }
     function onChangeProps(props, event){
@@ -60,7 +62,7 @@
     }
     function editModeleInfo(id, payload){
         return dispatch => {
-            ModeleService.put(`https://sayaradz-ee-backend.herokuapp.com/api/modele?idModele=`+id, payload)
+            ModeleService.put(id, payload)
             .then((response)=>{
                 dispatch(updatedUserInfo());
                 history.push('/modeles');

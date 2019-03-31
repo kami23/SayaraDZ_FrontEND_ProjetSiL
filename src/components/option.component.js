@@ -189,7 +189,7 @@ Option.propTypes = {
 ;
 const mapStateToProps = (state) => {
   return {
-    Options: state.Option.Option,
+    Options: state.Option,
   };
 }
 const connectedOptionPage = withRouter(connect(mapStateToProps, null, null, {

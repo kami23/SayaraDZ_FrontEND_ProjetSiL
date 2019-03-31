@@ -10,7 +10,7 @@ export const ColorAction = {
 };
 function getColors(){
     return dispatch => {
-        ColorService.get()
+        ColorService.getColors()
         .then((response)=>{
             dispatch(changeColorsList(response.data));
         }).catch((err)=>{

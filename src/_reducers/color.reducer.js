@@ -1,5 +1,5 @@
 const initialState = { 
-    Colors: [],
+    Color: [],
     idColor:'',
     nomColor:'',
     codeColor:'',
@@ -11,7 +11,7 @@ export function Color(state = initialState, action) {
 
             return {
                 ...state,
-                Colors: action.Colors
+                Color: action.Color
             };
             case 'Color_DETAIL':
                         return {

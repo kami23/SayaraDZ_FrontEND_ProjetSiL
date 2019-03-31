@@ -8,7 +8,7 @@ export const ColorService = {
 };
 function getColors() {
   //  return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/Color', { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
-  return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/Color')
+  return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/couleur/')
     .then((response) => {
             console.log(response);
             return response;
@@ -19,7 +19,7 @@ function getColors() {
 
 function post(payload) {
  //   return axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/Color/create/`, payload, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
- return axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/Color/create/`,payload)
+ return axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/couleur/create/`,payload)
    
  .then((response) => {
             return response;
@@ -30,7 +30,7 @@ function post(payload) {
 
 function getColorbyId(apiEndpoint) {
   //  return axios.get(`https://sayaradz-ee-backend.herokuapp.com/api/Color?codeColor=` + apiEndpoint, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
-  return axios.get(`https://sayaradz-ee-backend.herokuapp.com/api/Color?codeColor=` + apiEndpoint)
+  return axios.get(`https://sayaradz-ee-backend.herokuapp.com/api/couleur/?codeColor=` + apiEndpoint)
     
   .then((response) => {
             return response;

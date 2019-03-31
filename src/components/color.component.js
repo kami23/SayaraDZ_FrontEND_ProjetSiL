@@ -102,8 +102,7 @@ class Color extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(ModeleAction.getModele());
-
+dispatch(ColorAction.getColors());
   }
 
   handleChange (event){    
@@ -118,32 +117,10 @@ class Color extends React.Component {
   
   render() {
     const { classes } = this.props;
-    const { elements } = this.props.Modele;
-   
+    const {Color} = this.props.Color;
+
     return (
       <div className={classes.root}>
-
-        <FormControl required >
-          <InputLabel htmlFor="Modele">Colors</InputLabel>
-          <Select
-            native
-            value={this.state.value}
-            onChange={this.handleChange}
-            name="value"
-            inputProps={{
-              id: "Modele",
-            }}
-          >
-            <Color value="" />
-            {this.props.Modele.map(element => {
-              return (
-                <Color value={element.idModele}>{element.nomModele}</Color>
-              )
-            })}
-
-          </Select>
-        </FormControl>
-
 
          <div className={classes.appFrame}>
                         <main className={classes.content}>
@@ -176,17 +153,19 @@ class Color extends React.Component {
                                     <TableRow>
                                         <TableCell>Code Color</TableCell>
                                         <TableCell>Nom Color</TableCell>
+                                        <TableCell>Action</TableCell>
+                                        
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                {this.props.Colors.map(n => {
+                                {Color.map(n => {
                                     return (
-                                        <TableRow key={n.idModele}>
+                                        <TableRow key={n.codeCouleur}>
                                         <TableCell component="th" scope="row">
-                                            {n.codeColor}
+                                            {n.codeCouleur}
                                             </TableCell>
                                             <TableCell component="th" scope="row">
-                                            {n.nomColor}
+                                            {n.nomCouleur}
                                             </TableCell>
 
                                             <TableCell>
@@ -218,7 +197,7 @@ Color.propTypes = {
 ;
 const mapStateToProps = (state) => {
   return {
-    Colors: state.Color.Colors,
+    Color: state.Color,
   };
 }
 const connectedColorPage = withRouter(connect(mapStateToProps, null, null, {

@@ -230,7 +230,7 @@ class SideBar extends React.Component {
                         <MenuItem component={Link} to="/versions" button className={classes.nested}>
                             Gestion Versions
                 </MenuItem>
-                        <MenuItem button className={classes.nested}>
+                        <MenuItem button component={Link} to="/colors" className={classes.nested}>
                             Gestion Couleurs
                 </MenuItem>
                         <MenuItem  component={Link} to="/options" button className={classes.nested}>

@@ -7,6 +7,8 @@ import { Version } from '../components/version.component'
 import { AddVersion } from '../components/AddVersion.component'
 import { AddOption } from '../components/AddOption.component'
 import { Option } from '../components/option.component'
+import { Color } from '../components/color.component'
+import { AddColor } from '../components/Addcolor.component'
 
 const routes = (
   <Switch>
@@ -23,6 +25,11 @@ const routes = (
     <Route exact path='/options' component={Option} />
     <Route exact path='/add-option' component={AddOption} />
     <Route exact path='/edit-option/:id' component={AddOption} />
+
+    <Route exact path='/colors' component={Color} />
+    <Route exact path='/add-color' component={AddColor} />
+    <Route exact path='/edit-color/:id' component={AddColor} />
+
 
   </Switch>
 );
