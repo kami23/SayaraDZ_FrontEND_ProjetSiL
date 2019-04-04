@@ -23,7 +23,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ModeleAction,ColorAction } from '../_actions';
+import { ModeleAction,ColorAction } from '../../_actions';
 
 const drawerWidth = 240;
   

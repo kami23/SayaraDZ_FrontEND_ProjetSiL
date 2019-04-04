@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { ModeleAction } from '../_actions';
+import { ModeleAction } from '../../_actions';
 import { withRouter, Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
 import Fab from '@material-ui/core/Fab';
@@ -48,6 +48,21 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing.unit * 3,
     },
+    buttonCancel:{
+        backgroundColor:"#f17e5d",
+        "&:hover":{
+            color:'white',
+            backgroundColor:'#51bcda',
+        }
+    },
+    buttonSave:{
+        fontStyle:"Bold",
+        backgroundColor:'#51bcda',
+        "&:hover":{
+            color:'white',
+            backgroundColor:'#f17e5d',
+        }
+    }
 });
 
 class AddModele extends Component {
@@ -101,11 +116,11 @@ class AddModele extends Component {
         const { classes } = this.props;
         const { match: { params } } = this.props;
         function InsertText(props) {
-            return <Typography>{'Add New modele'}</Typography>;
+            return <Typography>{'Ajouter un nouveau modèle'}</Typography>;
         }
 
         function EditText(props) {
-            return <Typography>{'Edit modele'}</Typography>;
+            return <Typography>{'Modifier un modèle'}</Typography>;
         }
         function SegHeader() {
             if (params.id) {
@@ -131,8 +146,6 @@ class AddModele extends Component {
                             </Grid>
                         </Grid>
                         <br /><br />
-                        <Grid container spacing={24}>
-                            <Grid item xs={12}>
                                 <div>
                                     <Paper className={classes.contentRoot} elevation={1}>
                                         <form className={classes.container}>
@@ -190,10 +203,10 @@ class AddModele extends Component {
                                                 <Grid item xs={3} container justify="center">
                                                     <Grid container spacing={24}>
                                                         <Grid item xs={6} container justify="center">
-                                                            <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/modeles">Cancel</Button>
+                                                            <Button variant="contained" color="secondary" className={classes.buttonCancel} component={Link} to="/modeles">Annuler</Button>
                                                         </Grid>
                                                         <Grid item xs={6} container justify="flex-start">
-                                                            <Button variant="contained" color="primary" className={classes.button} onClick={(event) => this.handleClick(event)}>Save</Button>
+                                                            <Button variant="contained" color="primary" className={classes.buttonSave} onClick={(event) => this.handleClick(event)}>Enregistrer</Button>
                                                         </Grid>
                                                     </Grid>
                                                 </Grid>
@@ -201,8 +214,7 @@ class AddModele extends Component {
                                         </form>
                                     </Paper>
                                 </div>
-                            </Grid>
-                        </Grid>
+                            
                     </main>
                 </div>
 

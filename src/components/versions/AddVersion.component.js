@@ -8,14 +8,14 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { VersionAction } from '../_actions';
+import { VersionAction } from '../../_actions';
 import { withRouter, Link } from 'react-router-dom';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import { ModeleAction } from '../_actions';
+import { ModeleAction } from '../../_actions';
 import { isNullOrUndefined } from 'util';
 
 const drawerWidth = 240;

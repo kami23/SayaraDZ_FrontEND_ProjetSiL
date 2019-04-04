@@ -1,18 +1,20 @@
 
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Modele } from '../components/modele.component'
-import { AddModele } from '../components/Addmodele.component'
-import { Version } from '../components/version.component'
-import { AddVersion } from '../components/AddVersion.component'
-import { AddOption } from '../components/AddOption.component'
-import { Option } from '../components/option.component'
-import { Color } from '../components/color.component'
-import { AddColor } from '../components/Addcolor.component'
+import { Modele } from '../components/modeles/modele.component'
+import { AddModele } from '../components/modeles/Addmodele.component'
+import { Version } from '../components/versions/version.component'
+import { AddVersion } from '../components/versions/AddVersion.component'
+import { AddOption } from '../components/options/AddOption.component'
+import { Option } from '../components/options/option.component'
+import { Color } from '../components/colors/color.component'
+import { AddColor } from '../components/colors/Addcolor.component'
 
 const routes = (
   <Switch>
     <Route exact path='/Acceuil' />
+    <Route exact path='/Commande' />
+    <Route exact path='/Simuler' />
 
     <Route exact path='/modeles' component={Modele} />
     <Route exact path='/add-modele' component={AddModele} />

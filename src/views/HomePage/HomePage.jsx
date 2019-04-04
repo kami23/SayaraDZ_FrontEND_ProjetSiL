@@ -19,10 +19,9 @@
             return (
     <BrowserRouter>
     <div >
-        <Header></Header>
     <Grid container>
         <Grid item xs={2}>
-            <Paper >
+            <Paper className="paper" >
     <SideBar>
         </SideBar>       
         </Paper>

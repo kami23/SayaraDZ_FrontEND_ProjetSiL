@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { ModeleAction } from '../_actions';
+import { ModeleAction } from '../../_actions';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -64,6 +64,20 @@ const styles = theme => ({
     table: {
         minWidth: 700,
     },
+    buttonEdit:{
+        color:'#6bd098',
+    },
+    buttonDelete:{
+        color:'#f17e5d'
+    },
+    buttonAdd:{
+        fontStyle:"Bold",
+        backgroundColor:'#51bcda',
+        "&:hover":{
+            color:'white',
+            backgroundColor:'#f17e5d',
+        }
+    }
 });
 const chipColors=[];
 class Modele extends Component {
@@ -126,8 +140,8 @@ console.log("chips"+chipColors);
                             <Grid item xs={6}>
                             </Grid>
                             <Grid item xs={3} container justify="flex-end">
-                                <Button variant="contained" color="primary" className={classes.button}
-                                    component={Link} to={`/add-Modele`}>Add Modele</Button>
+                                <Button variant="contained" color="primary" className={classes.buttonAdd}
+                                    component={Link} to={`/add-Modele`}>Ajouter un Modèle</Button>
                             </Grid>
                         </Grid>
                         <br /><br />
@@ -169,10 +183,10 @@ console.log("chips"+chipColors);
                                                     </TableCell>
 
                                                     <TableCell>
-                                                        <IconButton className={classes.button} aria-label="Edit" component={Link} to={`/edit-Modele/${n.idModele}`}>
+                                                        <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Modele/${n.idModele}`}>
                                                             <EditIcon />
                                                         </IconButton>
-                                                        <IconButton className={classes.button} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.idModele)}>
+                                                        <IconButton className={classes.buttonDelete} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.idModele)}>
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </TableCell>
