@@ -10,7 +10,6 @@ import Menu from '@material-ui/core/Menu';
 import MailIcon from '@material-ui/icons/Mail';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import InsertDrivFileOutilne from '@material-ui/icons/InsertDrivFileOutline';
 
 import {
     AppBar, CssBaseline,
@@ -279,7 +278,6 @@ class SideBar extends React.Component {
                             root: classes.menuItemRoot,
                             selected: classes.menuItemSelected
                         }} selected={pathname === "/Commande"}>
-                        <InsertDrivFileOutilne/>
 
 
                         Gestion Commandes</MenuItem>
