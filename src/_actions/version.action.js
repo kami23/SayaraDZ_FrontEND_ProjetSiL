@@ -2,6 +2,7 @@ import { VersionService } from '../_services';
 import { history } from '../_helpers';
 
 export const VersionAction = {
+    get,
     getVersions,
     deleteVersionById,
     createVersion,
@@ -10,6 +11,20 @@ export const VersionAction = {
     editModeleInfo
 
 };
+
+
+function get(){
+    return dispatch => {
+        VersionService.get()
+        .then((response)=>{
+            dispatch(changeVersionsList(response.data));
+        }).catch((err)=>{
+            console.log(err);
+        })
+    };
+}
+
+
 function getVersions(id){
     return dispatch => {
         VersionService.getVersions(id)

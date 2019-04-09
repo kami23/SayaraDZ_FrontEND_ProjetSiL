@@ -26,9 +26,9 @@
         </SideBar>       
         </Paper>
             </Grid>
-            <Grid item xs={10}>
-            <Paper>               
-    {routes}</Paper>
+            <Grid item xs={10} className="mainApp">
+               
+    {routes}
             </Grid>
         </Grid>
                 

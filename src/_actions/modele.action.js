@@ -42,6 +42,7 @@
         return dispatch => {
             ModeleService.getModelebyId(id)
             .then((response)=>{
+                console.log("ress"+JSON.stringify(response.data));
               dispatch(editModeleDetails(response.data));
             })
         };
@@ -52,7 +53,7 @@
             idModele:Modele[0].idModele,
             nomModele:Modele[0].nomModele,
             codeModele:Modele[0].codeModele,
-            couleurCompatible:Modele[0].couleurCompatible
+            couleur_set:Modele[0].couleur_set
         }
     }
     function onChangeProps(props, event){

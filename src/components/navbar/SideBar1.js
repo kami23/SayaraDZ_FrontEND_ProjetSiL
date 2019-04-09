@@ -6,10 +6,6 @@ import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import Menu from '@material-ui/core/Menu';
-import MailIcon from '@material-ui/icons/Mail';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 
 import {
     AppBar, CssBaseline,
@@ -23,28 +19,22 @@ const drawerWidth = 240;
 
 const styles = theme => ({
     root: {
-
+        
         display: 'flex',
         boxShadow: '2px 4px 19px rgba(0, 0, 0, 0.25)',
     },
     drawer: {
-        color:"#94918d",
         [theme.breakpoints.up('sm')]: {
             width: drawerWidth,
             flexShrink: 0,
-            color:"#94918d"
         },
     },
     appBar: {
-backgroundColor:"#4f5467",
-color:"white",
-        borderButtom: "10px solid black",
         marginLeft: drawerWidth,
         [theme.breakpoints.up('sm')]: {
             width: `calc(100% - ${drawerWidth}px)`,
-
-            backgroundColor:"#4f5467",
-            color:"white",
+            backgroundColor: 'white',
+            color: 'black'
         },
     },
     menuButton: {
@@ -54,23 +44,78 @@ color:"white",
         },
     },
     menuItemRoot: {
-        padding:"20px",
         fontStyle: 'bold',
         backgroundColor: 'white',
         width: '88%',
-        color:"#94918d",
         "&$menuItemSelected, &$menuItemSelected:focus, &$menuItemSelected:hover": {
+            borderLeft: '4px solid #51bcda',
             backgroundColor: "-webkit-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75), -moz-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),   box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),",
-            color:"#eb5e28"
-        },
-        '&$icon:hover': {
-            color: "red",
-          },
-     
+                }
     },
     menuItemSelected: {},
-    icon: {},
-   
+    icon: {
+        color: '#bcbcbc',
+        '&:focus': {
+            color: '#51bcda',
+        }
+
+    },
+    menuItemRootHome: {
+        fontStyle: 'bold',
+        backgroundColor: 'white',
+        width: '88%',
+        "&$menuItemSelectedHome, &$menuItemSelectedHome:focus, &$menuItemSelectedHome:hover": {
+            borderLeft: '6px solid #51bcda',
+            backgroundColor: "-webkit-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75), -moz-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),   box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),",
+                }
+    },
+    menuItemSelectedHome: {},
+    iconHome:{
+        color:'#51bcda'
+    },
+    menuItemRootCommande: {
+        fontStyle: 'bold',
+        backgroundColor: 'white',
+        width: '88%',
+        "&$menuItemSelectedCommande, &$menuItemSelectedCommande:focus, &$menuItemSelectedCommande:hover": {
+            borderLeft: '6px solid #fcc468',
+            backgroundColor: "-webkit-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75), -moz-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),   box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),",
+                }
+    },
+    menuItemSelectedCommande: {},
+    iconCommande:{
+        color:'#fcc468'
+    },
+    
+    menuItemRootData: {
+        paddingLeft: theme.spacing.unit * 4,
+
+        fontStyle: 'bold',
+        backgroundColor: 'white',
+        width: '88%',
+        "&$menuItemSelectedData, &$menuItemSelectedData:focus, &$menuItemSelectedData:hover": {
+            borderLeft: '6px solid #f17e5d',
+            backgroundColor: "-webkit-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75), -moz-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),   box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),",
+                }
+    },
+    menuItemSelectedData: {},
+    iconData:{
+        color:'#f17e5d'
+    },
+    
+    menuItemRootCar: {
+        fontStyle: 'bold',
+        backgroundColor: 'white',
+        width: '88%',
+        "&$menuItemSelectedCar, &$menuItemSelectedCar:focus, &$menuItemSelectedCar:hover": {
+            borderLeft: '6px solid #6bd098',
+            backgroundColor: "-webkit-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75), -moz-box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),   box-shadow: 6px 4px 53px -7px rgba(0,0,0,0.75),",
+                }
+    },
+    menuItemSelectedCar: {},
+    iconCar:{
+        color:'#6bd098'
+    },
     active: {
 
         borderLeft: '4px solid #51bcda',
@@ -116,7 +161,7 @@ color:"white",
         backgroundColor: 'white'
     },
 
-
+   
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
         boxShadow: '2px 4px 19px rgba(0, 0, 0, 0.25)',
@@ -132,31 +177,17 @@ color:"white",
         marginTop: '20%'
     },
     userName: {
-        paddingLeft: '12px',
+        paddingLeft:'12px',
         align: 'center'
     },
     title: {
-        width: "108%",
-        height: "66px",
-        borderButtom: "4px solid black",
-        padding: '20px',
-        paddingLeft: '40px'
+        width:"108%",
+   height:"66px",
+   borderButtom:"4px solid black",
+   padding:'20px',
+   paddingLeft:'40px'
     },
-    sectionDesktop: {
-        display: 'none',
-        [theme.breakpoints.up('md')]: {
-          display: 'flex',
-        },
-      },
-      sectionMobile: {
-        display: 'flex',
-        [theme.breakpoints.up('md')]: {
-          display: 'none',
-        },
-      },
-      grow: {
-        flexGrow: 1,
-      },
+  
 });
 
 
@@ -175,12 +206,13 @@ class SideBar extends React.Component {
     }
     state = {
         mobileOpen: false,
-        open: false,
-        sectionTitle: 'Acceuil'
     };
 
     handleDrawerToggle = () => {
         this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+    };
+    state = {
+        open: false,
     };
 
     handleClick = () => {
@@ -191,53 +223,7 @@ class SideBar extends React.Component {
     render() {
         const { classes, theme } = this.props;
         const { location: { pathname } } = this.props;
-        const { anchorEl, mobileMoreAnchorEl } = this.state;
-        const isMenuOpen = Boolean(anchorEl);
-        const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-        const renderMenu = (
-            <Menu
-              anchorEl={anchorEl}
-              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-              open={isMenuOpen}
-              onClose={this.handleMenuClose}
-            >
-              <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-              <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
-            </Menu>
-          );
-        const renderMobileMenu = (
-            <Menu
-              anchorEl={mobileMoreAnchorEl}
-              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-              open={isMobileMenuOpen}
-              onClose={this.handleMenuClose}
-            >
-              <MenuItem onClick={this.handleMobileMenuClose}>
-                <IconButton color="inherit">
-                  <Badge badgeContent={4} color="secondary">
-                    <MailIcon />
-                  </Badge>
-                </IconButton>
-                <p>Messages</p>
-              </MenuItem>
-              <MenuItem onClick={this.handleMobileMenuClose}>
-                <IconButton color="inherit">
-                  <Badge badgeContent={11} color="secondary">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>
-                <p>Notifications</p>
-              </MenuItem>
-              <MenuItem onClick={this.handleProfileMenuOpen}>
-                <IconButton color="inherit">
-                  <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-              </MenuItem>
-            </Menu>
-          );
+
         var brand = (
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                 SayaraDZ Admin
@@ -260,26 +246,24 @@ class SideBar extends React.Component {
                     <h4> Admin </h4>
                 </div>
                 <MenuList className={classes.menu}>
-                    {console.log("Accauil" + this.activeRoute("/Acceuil"))}
                     <MenuItem component={Link} to="/Acceuil"
                         classes={{
-                            root: classes.menuItemRoot,
-                            selected: classes.menuItemSelected
-                        }} selected={pathname === "/Acceuil"}
-                        
-     >
- <HomeOutlinedIcon />
-                        
-
+                            root: classes.menuItemRootHome,
+                            selected: classes.menuItemSelectedHome
+                        }} selected={pathname === "/Acceuil"}>
+                        <ListItemIcon>
+                            <Icon className={classes.iconHome}> home </Icon>
+                        </ListItemIcon>
                         Acceuil </MenuItem>
 
                     <MenuItem component={Link} to="/Commande"
                         classes={{
-                            root: classes.menuItemRoot,
-                            selected: classes.menuItemSelected
+                            root: classes.menuItemRootCommande,
+                            selected: classes.menuItemSelectedCommande
                         }} selected={pathname === "/Commande"}>
-
-
+                        <ListItemIcon>
+                            <Icon className={classes.iconCommande} >insert_drive_file   </Icon>
+                        </ListItemIcon>
                         Gestion Commandes</MenuItem>
 
 
@@ -287,53 +271,55 @@ class SideBar extends React.Component {
                         root: classes.menuItemRoot,
                         selected: classes.menuItemSelected
                     }}>
-<SettingsOutlinedIcon/> Gestion Données
+                        <ListItemIcon>
+                            <Icon className={classes.iconData}>settings</Icon>
+                        </ListItemIcon> Gestion Données
 
         {this.state.open ? <ExpandLess /> : <ExpandMore />}
                     </MenuItem>
 
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                        <MenuItem component={Link} to="/modeles" button
-                            classes={{
-                                root: classes.menuItemRoot,
-                                selected: classes.menuItemSelected
-                            }}
-                            selected={pathname === "/modeles"}>
+                        <MenuItem component={Link} to="/modeles" button 
+                        classes={{
+                            root: classes.menuItemRootData,
+                            selected: classes.menuItemSelectedData
+                        }}
+                        selected={pathname === "/modeles"}>
                             Gestion Modèles
                 </MenuItem>
                         <MenuItem component={Link} to="/versions" button
-                            classes={{
-                                root: classes.menuItemRoot,
-                                selected: classes.menuItemSelected
-                            }}
-                            selected={pathname === "/versions"}>
+                        classes={{
+                            root: classes.menuItemRootData,
+                            selected: classes.menuItemSelectedData
+                        }}
+                        selected={pathname === "/versions"}>
                             Gestion Versions
                 </MenuItem>
-                        <MenuItem button component={Link} to="/colors"
-                            classes={{
-                                root: classes.menuItemRoot,
-                                selected: classes.menuItemSelected
-                            }}
-                            selected={pathname === "/colors"}>
+                        <MenuItem button component={Link} to="/colors" 
+                        classes={{
+                            root: classes.menuItemRootData,
+                            selected: classes.menuItemSelectedData
+                        }}
+                        selected={pathname === "/colors"}>
                             Gestion Couleurs
                 </MenuItem>
-                        <MenuItem component={Link} to="/options" button
-                            classes={{
-                                root: classes.menuItemRoot,
-                                selected: classes.menuItemSelected
-                            }}
-                            selected={pathname === "/options"}>
+                        <MenuItem component={Link} to="/options" button 
+                        classes={{
+                            root: classes.menuItemRootData,
+                            selected: classes.menuItemSelectedData
+                        }}
+                        selected={pathname === "/options"}>
                             Gestion Options
                 </MenuItem>
 
                     </Collapse>
 
                     <MenuItem component={Link} to="/Simuler" classes={{
-                        root: classes.menuItemRoot,
-                        selected: classes.menuItemSelected
+                        root: classes.menuItemRootCar,
+                        selected: classes.menuItemSelectedCar
                     }} selected={pathname === "/Simuler"}>
                         <ListItemIcon>
-                            <Icon className={classes.icon} >directions_car </Icon>
+                            <Icon className={classes.iconCar} >directions_car </Icon>
                         </ListItemIcon>
                         Simuler Prix
             </MenuItem>
@@ -357,38 +343,29 @@ class SideBar extends React.Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
-                            {this.state.sectionTitle}
-                        </Typography>
-                        <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-              <IconButton color="inherit">
-                <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-                aria-haspopup="true"
-                onClick={this.handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            <div className={classes.sectionMobile}>
-              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                <MoreIcon />
-              </IconButton>
-            </div>
-         
-        {renderMenu}
-        {renderMobileMenu}
-    </Toolbar>
+                            Responsive drawer
+                </Typography>
+                    <div className={classes.sectionDesktop}>
+                  <IconButton color="inherit">
+                    <Badge badgeContent={17} color="secondary">
+                      <NotificationsIcon />
+                    </Badge>
+                  </IconButton>
+                  <IconButton
+                    aria-owns={'material-appbar'}
+                    aria-haspopup="true"
+                    onClick={this.handleProfileMenuOpen}
+                    color="inherit"
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                </div>
+                <div className={classes.sectionMobile}>
+                  <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                    <MoreIcon />
+                  </IconButton>
+                </div>
+                </Toolbar>
 
                 </AppBar>
                 <nav className={classes.drawer}>
@@ -400,12 +377,21 @@ class SideBar extends React.Component {
                             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
                             open={this.state.mobileOpen}
                             onClose={this.handleDrawerToggle}
-                            classes={{paper: classes.drawerPaper, }}>
+                            classes={{
+                                paper: classes.drawerPaper,
+                            }}
+                        >
                             {drawer}
                         </Drawer>
                     </Hidden>
                     <Hidden xsDown implementation="css">
-                        <Drawer classes={{ paper: classes.drawerPaper, }} variant="permanent" open>
+                        <Drawer
+                            classes={{
+                                paper: classes.drawerPaper,
+                            }}
+                            variant="permanent"
+                            open
+                        >
                             {drawer}
                         </Drawer>
                     </Hidden>

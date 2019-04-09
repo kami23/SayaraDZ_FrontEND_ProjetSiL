@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const VersionService = {
+    get,
     getVersions,
     post,
     getVersionbyId,
@@ -20,6 +21,17 @@ function getVersions(id) {
         })
 }
 
+function get() {
+   // return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/version?modeleVersion='+id, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
+   return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/version')
+     
+   .then((response) => {
+            console.log(response);
+            return response;
+        }).catch((err) => {
+            console.log(err);
+        })
+}
 function post(payload) {
  //   return axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/version/create/`, payload, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
  return axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/version/create/`, payload)

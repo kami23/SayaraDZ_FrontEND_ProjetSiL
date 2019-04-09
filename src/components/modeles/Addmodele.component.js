@@ -70,7 +70,7 @@ class AddModele extends Component {
     state={
        chipColors : [        
        ],
-
+    showAddColorForm:false
     }
     handleChange = prop => event => {
         const { dispatch } = this.props;
@@ -82,7 +82,7 @@ class AddModele extends Component {
         const chipColors = [...state.chipColors];
             
         const chipToDelete = chipColors.indexOf(color);
-        this.props.couleurCompatible.splice(chipToDelete, 1);
+        this.props.couleur_set.splice(chipToDelete, 1);
         console.log("chips" + chipColors);
         return { chipColors};
         });
@@ -94,7 +94,7 @@ class AddModele extends Component {
         if (params.id) {
             const { dispatch } = this.props;
             dispatch(ModeleAction.getModeleById(params.id));
-            this.setState({chipColors:this.props.couleurCompatible})
+            this.setState({chipColors:this.props.couleur_set})
         }
     }
     handleClick(event) {
@@ -103,7 +103,7 @@ class AddModele extends Component {
         let payload = {
             nomModele: this.props.nomModele,
             marqueModele: JSON.parse(localStorage.getItem('user')).marqueid,
-            couleurCompatible: this.props.couleurCompatible,
+            couleur_set: this.props.couleur_set,
             codeModele: this.props.codeModele
         }
         if (params.id) {
@@ -128,6 +128,31 @@ class AddModele extends Component {
             }
             return <InsertText />;
         }
+        var brand = (
+            <Grid item xs={3}>
+            <TextField
+                id="codeModele"
+                label="Code Modele"
+                className={classes.textField}
+                value={this.props.codeModele}
+                margin="normal"
+                onChange={this.handleChange('codeModele')}
+            >
+            </TextField>
+            <TextField
+                id="nomCouleur"
+                label="Name"
+                className={classes.textField}
+                value={nomModele}
+                margin="normal"
+                onChange={this.handleChange('nomCouleur')}
+            > 
+            </TextField>
+
+            </Grid>
+    
+        );
+
         const nomModele = this.props.nomModele;
         return (
 
@@ -172,14 +197,14 @@ class AddModele extends Component {
                                                     <br /><br /><br />
                                                     <label> Couleurs Compatibles</label>
                                                     <br /><br />
-                                                    {this.props.couleurCompatible.map(couleur => {
+                                                    {this.props.couleur_set.map(couleur => {
                                                         console.log(couleur)
                                                         return (
 
                                                             <Chip
-                                                                key={couleur}
-                                                                label={couleur}
-                                                                onDelete={this.handleDelete.bind(couleur)}
+                                                                key={couleur.pk}
+                                                                label={couleur.nomCouleur}
+                                                                onDelete={this.handleDelete.bind(couleur.pk)}
 
                                                                 className={classes.chip}
                                                             />
@@ -187,9 +212,12 @@ class AddModele extends Component {
                                                     })}
                                                     <br/>
 <label> Add couleur</label>
+
                                                     <Fab size="small" color="secondary" onClick={this.addColorClick} aria-label="Add" className={classes.margin}>
           <AddIcon />
         </Fab>
+
+        {this.state.showAddColorForm }
 
                                                 </Grid>
 
@@ -236,7 +264,7 @@ const mapStateToProps = (state) => {
         idModele: state.Modele.idModele,
         nomModele: state.Modele.nomModele,
         codeModele: state.Modele.codeModele,
-        couleurCompatible: state.Modele.couleurCompatible
+        couleur_set: state.Modele.couleur_set
     }
 }
 

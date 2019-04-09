@@ -3,7 +3,7 @@
                 idModele:'',
                 nomModele:'',
                 codeModele:'',
-                couleurCompatible:[]
+                couleur_set:[]
             };
             export function Modele(state = initialState, action) {
                 switch (action.type) {
@@ -21,7 +21,7 @@
                             idModele: action.idModele,
                             nomModele: action.nomModele,
                             codeModele: action.codeModele,
-                            couleurCompatible:action.couleurCompatible
+                            couleur_set:action.couleur_set
                         };
                     case "USER_UPDATED":
                         return state;

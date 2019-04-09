@@ -68,14 +68,15 @@ const styles = theme => ({
         color:'#6bd098',
     },
     buttonDelete:{
-        color:'#f17e5d'
+        color:'#6bd098'
     },
     buttonAdd:{
         fontStyle:"Bold",
         backgroundColor:'#51bcda',
         "&:hover":{
+            width:'200px',
             color:'white',
-            backgroundColor:'#f17e5d',
+            backgroundColor:'#6bd098',
         }
     }
 });
@@ -88,7 +89,7 @@ class Modele extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(ModeleAction.getModele());
+        dispatch(ModeleAction.getModele());        
     }
     handleChange = event => {
         this.setState({
@@ -161,7 +162,7 @@ console.log("chips"+chipColors);
                                     <TableBody>
                                         {Modele.map(n => {
                                             return (
-                                                <TableRow key={n.idModele}>
+                                                <TableRow key={n.pk}>
                                                     <TableCell component="th" scope="row">
                                                         {n.codeModele}
                                                     </TableCell>
@@ -169,13 +170,13 @@ console.log("chips"+chipColors);
                                                         {n.nomModele}
                                                     </TableCell>
                                                     <TableCell component="th" scope="row">
-                                                        {n.couleurCompatible.map(couleur => {
+                                                        {n.couleur_set.map(couleur => {
                                                             chipColors.push(couleur)
                                                             return (
 
                                                                 <Chip
-                                                                    key={couleur}
-                                                                    label={couleur}
+                                                                    key={couleur.pk}
+                                                                    label={couleur.codeCouleur+"  "+couleur.nomCouleur}
                                                                     className={classes.chip}
                                                                 />
                                                             );
@@ -183,7 +184,7 @@ console.log("chips"+chipColors);
                                                     </TableCell>
 
                                                     <TableCell>
-                                                        <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Modele/${n.idModele}`}>
+                                                        <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Modele/${n.pk}`}>
                                                             <EditIcon />
                                                         </IconButton>
                                                         <IconButton className={classes.buttonDelete} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.idModele)}>

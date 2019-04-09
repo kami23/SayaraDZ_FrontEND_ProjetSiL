@@ -79,6 +79,25 @@ const styles = theme => ({
             table: {
                 minWidth: 700,
             },
+            select:{
+              minWidth: 100,
+
+            }, buttonEdit:{
+              color:'#6bd098',
+          },
+          buttonDelete:{
+              color:'#6bd098'
+          },
+          buttonAdd:{
+            color:"white",
+              fontStyle:"Bold",
+              backgroundColor:'#51bcda',
+              "&:hover":{
+                  width:'200px',
+                  color:'white',
+                  backgroundColor:'#6bd098',
+              }
+          }
         });
 
 class Version extends React.Component {
@@ -102,7 +121,7 @@ class Version extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(ModeleAction.getModele());
+    dispatch(VersionAction.get());
 
   }
 
@@ -123,7 +142,17 @@ class Version extends React.Component {
     return (
       <div className={classes.root}>
 
-        <FormControl required >
+        
+
+
+         <div className={classes.appFrame}>
+                        <main className={classes.content}>
+
+                        <div className={classes.toolbar} />
+
+                        <Grid container spacing={24}>
+                            <Grid item xs={3}>
+                            <FormControl required >
           <InputLabel htmlFor="Modele">Modele</InputLabel>
           <Select
             native
@@ -133,24 +162,17 @@ class Version extends React.Component {
             inputProps={{
               id: "Modele",
             }}
+            className={classes.select}
           >
             <option value="" />
             {this.props.Modele.map(element => {
               return (
-                <option value={element.idModele}>{element.nomModele}</option>
+                <option value={element.pk}>{element.nomModele}</option>
               )
             })}
 
           </Select>
         </FormControl>
-
-
-         <div className={classes.appFrame}>
-                        <main className={classes.content}>
-                        <div className={classes.toolbar} />
-                        <Grid container spacing={24}>
-                            <Grid item xs={3}>
-                                <Typography>{'Modele'}</Typography>
                             </Grid>
                             <Grid item xs={6}>
                             </Grid>
@@ -163,8 +185,8 @@ class Version extends React.Component {
                             <Grid item xs={6}>
                             </Grid>
                             <Grid item xs={3} container justify="flex-end">
-                                <Button variant="contained" color="primary" className={classes.button} 
-                                component={Link} to={`/add-version`}>Add Version</Button>
+                                <Button variant="contained" className={classes.buttonAdd} 
+                                component={Link} to={`/add-version`}>Ajouter une version</Button>
                         
                             </Grid>
                         </Grid>
@@ -206,10 +228,10 @@ class Version extends React.Component {
                                             <TableCell component="th" scope="row">
                                             </TableCell>
                                             <TableCell>
-                                                <IconButton className={classes.button} aria-label="Edit" component={Link} to={`/edit-version/${n.idVersion}`}>
+                                                <IconButton className={classes.buttonEdit} aria-label="Modifier" component={Link} to={`/edit-version/${n.idVersion}`}>
                                                 <EditIcon />
                                                 </IconButton>
-                                                <IconButton className={classes.button} aria-label="Delete" onClick={(event) => this.handleClick(event, n.idVersion)}>
+                                                <IconButton className={classes.buttonDelete} aria-label="Supprimer" onClick={(event) => this.handleClick(event, n.idVersion)}>
                                                 <DeleteIcon /> 
                                                 </IconButton>
                                             </TableCell>
