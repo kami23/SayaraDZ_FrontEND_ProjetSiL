@@ -1,69 +1,3 @@
-<<<<<<< HEAD
-.myinput1 {
- 
-    position:absolute;
-    width: 8%;
-    top: 150px;
-    background: #FFFFFF;
-    border-radius: 10px;
-    border: 1px solid #C4C4C4;
-    padding: 12px 20px 12px 40px; /* Add some padding */
-    left: 317px;
-
-}
-.myinput2 {
- 
-  position:absolute;
-  width: 6%;
-  top: 150px;
-  background: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #C4C4C4;
-  padding: 12px 20px 12px 40px; /* Add some padding */
-  left: 540px;
-
-}
-
-.myinput3 {
- 
-  position:absolute;
-  width: 6%;
-  top: 150px;
-  background: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #C4C4C4;
-  padding: 12px 20px 12px 40px; /* Add some padding */
-  left: 700px;
-
-}
-
-.myinput4 {
- 
-  position:absolute;
-  width: 6%;
-  top: 150px;
-  background: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #C4C4C4;
-  padding: 12px 20px 12px 40px; /* Add some padding */
-  left: 866px;
-
-}
-.Boutonloop {
-  position: absolute;
-  width: 3%;
-  top:151px;   
-  padding:6px 0 6px 0;
-  background: #FCC468;
-  border: 1px solid #C4C4C4;
-  box-sizing: border-box;
-  border-radius: 10px;
-  left : 488px;
-
-  
-
-}
-=======
 .myinput {
  
     position: relative;
@@ -93,4 +27,3 @@
     
 
   }
->>>>>>> Crud and sideBar

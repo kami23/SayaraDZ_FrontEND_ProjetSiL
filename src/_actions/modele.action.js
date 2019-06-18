@@ -24,27 +24,25 @@
             Modele: Modele
         }
     }
-    export function editModelechangeModele(Modele){
-        return{
-            type: "Edit_Modele",
-            Modele: Modele
-        }
-    }
+    
     
     function createModele(payload){
         return dispatch => {
            
-            ModeleService.post(`https://sayaradz-ee-backend.herokuapp.com/api/modele/create/`, payload)
+            ModeleService.post(payload)
             .then((response)=>{
                 dispatch(createUserInfo());
-                history.push('/modele');
+                history.push('/modeles');
             })
         }
     }
+
+    
     function getModeleById(id){
         return dispatch => {
             ModeleService.getModelebyId(id)
             .then((response)=>{
+                console.log("ress"+JSON.stringify(response.data));
               dispatch(editModeleDetails(response.data));
             })
         };
@@ -53,7 +51,9 @@
         return{
             type: "Modele_DETAIL",
             idModele:Modele[0].idModele,
-            nomModele:Modele[0].nomModele
+            nomModele:Modele[0].nomModele,
+            codeModele:Modele[0].codeModele,
+            couleur_set:Modele[0].couleur_set
         }
     }
     function onChangeProps(props, event){
@@ -63,10 +63,10 @@
     }
     function editModeleInfo(id, payload){
         return dispatch => {
-            ModeleService.put(`https://sayaradz-ee-backend.herokuapp.com/api/modele?idModele=`+id, payload)
+            ModeleService.put(id, payload)
             .then((response)=>{
                 dispatch(updatedUserInfo());
-                history.push('/vendor');
+                history.push('/modeles');
             })
         }
     }
