@@ -10,7 +10,6 @@ export const ModeleService = {
 function get(apiEndpoint) {
     return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/modele')
         .then((response) => {
-            console.log(response);
             return response;
         }).catch((err) => {
             console.log(err);

@@ -146,7 +146,7 @@ class SideBar extends React.Component {
            Gestion Options
             </MenuItem>
         </Collapse>
-        <MenuItem component={Link} to="/Acceuil" className={classes.menuItem}>
+        <MenuItem component={Link} to="/Simuler" className={classes.menuItem}>
       Simuler Prix
         </MenuItem>
         
