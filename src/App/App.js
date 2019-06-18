@@ -28,9 +28,9 @@ class App extends React.Component {
                         }
                         <Router history={history}>
                             <div>
-                                <Route exact path="/" component={HomePage} />
+                                <PrivateRoute exact path="/" component={HomePage} />
                                 <Route path="/login" component={LoginPage} />
-                            </div>
+                                                      </div>
                         </Router>
                     
             </div>
@@ -40,9 +40,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
     const { alert } = state;
-    return {
-        alert
-    };
+    return {alert};
 }
 
 const connectedApp = connect(mapStateToProps)(App);
