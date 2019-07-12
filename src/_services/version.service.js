@@ -11,10 +11,10 @@ export const VersionService = {
 function getVersions(id) {
     console.log("idService",id);
    // return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/version?modeleVersion='+id, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
-   return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/version?modeleVersion='+id)
+   return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/version?modeleId='+id)
      
    .then((response) => {
-            console.log(response);
+            console.log(response,"IM HEEEEEEEEEEEEEEEEEEERE");
             return response;
         }).catch((err) => {
             console.log(err);
@@ -45,9 +45,10 @@ function post(payload) {
 
 function getVersionbyId(apiEndpoint) {
   //  return axios.get(`https://sayaradz-ee-backend.herokuapp.com/api/version?idVersion=` + apiEndpoint, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
-  return axios.get(`https://sayaradz-ee-backend.herokuapp.com/api/version?idVersion=` + apiEndpoint)
+  return axios.get(`https://sayaradz-ee-backend.herokuapp.com/api/version?pk=` + apiEndpoint)
     
   .then((response) => {
+            console.log("im here at version service ",apiEndpoint);
             return response;
         }).catch((err) => {
             console.log(err);

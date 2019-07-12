@@ -1,21 +1,23 @@
 
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Modele } from '../components/modeles/modele.component'
-import { AddModele } from '../components/modeles/Addmodele.component'
-import { Version } from '../components/versions/version.component'
-import { AddVersion } from '../components/versions/AddVersion.component'
-import { AddOption } from '../components/options/AddOption.component'
-import { Option } from '../components/options/option.component'
-import { Color } from '../components/colors/color.component'
-import { AddColor } from '../components/colors/Addcolor.component'
+import { Modele } from '../components/modeles/modele.component';
+import { AddModele } from '../components/modeles/Addmodele.component';
+import { Version } from '../components/versions/version.component';
+import { AddVersion } from '../components/versions/AddVersion.component';
+import { AddOption } from '../components/options/AddOption.component';
+import { Option } from '../components/options/option.component';
+import { Color } from '../components/colors/color.component';
+import { AddColor } from '../components/colors/Addcolor.component';
+import {MultipleSelect} from '../components/simuler/dropdownlist/dropdownlist.component';
+import CustomSelect from '../components/versions/customSelect';
+import { version } from "punycode";
 
 const routes = (
   <Switch>
     <Route exact path='/Acceuil' />
     <Route exact path='/Commande' />
     <Route exact path='/Simuler' />
-
     <Route exact path='/modeles' component={Modele} />
     <Route exact path='/add-modele' component={AddModele} />
     <Route exact path='/edit-modele/:id' component={AddModele} />
@@ -31,6 +33,8 @@ const routes = (
     <Route exact path='/colors' component={Color} />
     <Route exact path='/add-color' component={AddColor} />
     <Route exact path='/edit-color/:id' component={AddColor} />
+
+    <Route exact path='/Simuler' component={MultipleSelect} />
 
 
   </Switch>

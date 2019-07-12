@@ -6,6 +6,10 @@ import {Modele} from './modele.reducer';
 import {Version} from './version.reducer';
 import {Option} from './option.reducer';
 import {Color} from './color.reducer';
+import slider from './slider.reducer';
+import settings from './settings.reducer';
+
+
 
 const rootReducer = combineReducers({
   authentication,
@@ -13,7 +17,9 @@ const rootReducer = combineReducers({
   Version,
   Option,
   Color,
-  alert
+  alert,
+  slider,
+  settings
 });
 
 export default rootReducer;

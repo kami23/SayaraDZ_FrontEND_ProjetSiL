@@ -167,7 +167,7 @@ class Version extends React.Component {
             <option value="" />
             {this.props.Modele.map(element => {
               return (
-                <option value={element.pk}>{element.nomModele}</option>
+                <option value={element.codeModele}>{element.nom}</option>
               )
             })}
 

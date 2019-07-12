@@ -22,6 +22,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Chip from '@material-ui/core/Chip';
+import {MultipleSelect} from '../../components/simuler/dropdownlist/dropdownlist.component';
+import Slider from '../../components/simuler/slider/Slider'
 
 const drawerWidth = 240;
 const styles = theme => ({
@@ -81,6 +83,7 @@ const styles = theme => ({
     }
 });
 const chipColors=[];
+
 class Modele extends Component {
     state = {
         open: false,
@@ -121,11 +124,16 @@ console.log("chips"+chipColors);
         const { classes } = this.props;
         const { Modele } = this.props.Modele;
         return (
-            <div className={classes.root}>
+            
+        <MultipleSelect/>)}
 
+       
+        /*return (
+            <div className={classes.root}>
                 <div className={classes.appFrame}>
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
+                        
                         <Grid container spacing={24}>
                             <Grid item xs={3}>
                                 <Typography>{'Modele'}</Typography>
@@ -167,7 +175,7 @@ console.log("chips"+chipColors);
                                                         {n.codeModele}
                                                     </TableCell>
                                                     <TableCell component="th" scope="row">
-                                                        {n.nomModele}
+                                                        {n.nom}
                                                     </TableCell>
                                                     <TableCell component="th" scope="row">
                                                         {n.couleur_set.map(couleur => {
@@ -200,7 +208,6 @@ console.log("chips"+chipColors);
                         </Grid>
                     </main>
                 </div>
-
                 <div>
 
                     <Dialog
@@ -224,7 +231,7 @@ console.log("chips"+chipColors);
                 </div>
             </div>
         );
-    }
+    }*/
 }
 Modele.propTypes = {
     classes: PropTypes.object.isRequired,
