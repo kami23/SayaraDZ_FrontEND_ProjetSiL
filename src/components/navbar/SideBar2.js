@@ -11,9 +11,9 @@ import Grid from '@material-ui/core/Grid';
 import {
     AppBar, CssBaseline,
     Divider, Drawer, Hidden, Toolbar, Typography,
-    MenuItem, MenuList, Collapse, ListItemIcon, IconButton, Icon, withStyles
+    MenuItem, MenuList, ListItemIcon, IconButton, Icon, withStyles
 } from '@material-ui/core';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
+//import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 240;
@@ -174,8 +174,6 @@ const styles = theme => ({
         padding: theme.spacing.unit * 3,
     },
     userProfile: {
-        height:'140px',
-        wdith:'100%',
         marginTop: '20%'
     },
     userName: {
@@ -190,11 +188,6 @@ const styles = theme => ({
    padding:'20px',
    paddingLeft:'40px'
     },
-    img:{
-        height:'140px',
-        width:'170px',
-        marginLeft:'30px',
-    }
   
 });
 
@@ -224,8 +217,8 @@ class SideBar extends React.Component {
         title:""
     };
 
-    handleClickChangeTitle (title1){
-        this.state(state => ({title:title1}));
+    handleClickChangeTitle (title){
+       this.setState (state=> {state.title=title});
     }
     handleClick = () => {
         this.setState(state => ({ open: !state.open }));
@@ -238,7 +231,7 @@ class SideBar extends React.Component {
 
         var brand = (
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                SayaraDZ Fabricant
+                SayaraDZ Admin
                     </Typography>
 
         );
@@ -252,10 +245,10 @@ class SideBar extends React.Component {
                     </div>
                 </Hidden>
                 <div className={classes.userProfile}>
-                    <img className={classes.img} alt="user" src={user} />
+                    <img className="user" alt="user" src={user} />
                 </div>
                 <div className={classes.userName}>
-                    <h4> Fabricant </h4>
+                    <h4> Admin </h4>
                 </div>
                 <MenuList className={classes.menu}>
                     <MenuItem component={Link} to="/Acceuil"
@@ -268,73 +261,35 @@ class SideBar extends React.Component {
                         </ListItemIcon>
                         Accueil </MenuItem>
 
-                    <MenuItem component={Link} to="/commandes"
+                    <MenuItem component={Link} to="/utilisateurs"
                         classes={{
                             root: classes.menuItemRootCommande,
                             selected: classes.menuItemSelectedCommande
-                        }} selected={pathname === "commandes"}>
+                        }} selected={pathname === "utilisateurs"}>
                         <ListItemIcon>
-                            <Icon className={classes.iconCommande} >insert_drive_file   </Icon>
+                            <Icon className={classes.iconCommande} > supervised_user_circle </Icon>
                         </ListItemIcon>
-                        Gestion Commandes</MenuItem>
+                        Gestion Utilisateurs</MenuItem>
 
 
-                    <MenuItem onClick={this.handleClick} classes={{
-                        root: classes.menuItemRoot,
-                        selected: classes.menuItemSelected
-                    }}>
-                        <ListItemIcon>
-                            <Icon className={classes.iconData}>settings</Icon>
-                        </ListItemIcon> Gestion Données
-
-        {this.state.open ? <ExpandLess /> : <ExpandMore />}
-                    </MenuItem>
-
-                    <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                        <MenuItem component={Link} to="/modeles" button 
-                        classes={{
-                            root: classes.menuItemRootData,
-                            selected: classes.menuItemSelectedData
-                        }}
-                        selected={pathname === "/modeles"}>
-                            Gestion Modèles
-                </MenuItem>
-                        <MenuItem component={Link} to="/versions" button
-                        classes={{
-                            root: classes.menuItemRootData,
-                            selected: classes.menuItemSelectedData
-                        }}
-                        selected={pathname === "/versions"}>
-                            Gestion Versions
-                </MenuItem>
-                        <MenuItem button component={Link} to="/colors" 
-                        classes={{
-                            root: classes.menuItemRootData,
-                            selected: classes.menuItemSelectedData
-                        }}
-                        selected={pathname === "/colors"}>
-                            Gestion Couleurs
-                </MenuItem>
-                        <MenuItem button component={Link} to="/options" 
-                        classes={{
-                            root: classes.menuItemRootData,
-                            selected: classes.menuItemSelectedData
-                        }}
-                        selected={pathname === "/options"}>
-                            Gestion Options
-                </MenuItem>
-
-                    </Collapse>
-
-                    <MenuItem component={Link} to="/Simuler" classes={{
+                    <MenuItem component={Link} to="/fabricants" classes={{
                         root: classes.menuItemRootCar,
                         selected: classes.menuItemSelectedCar
-                    }} selected={pathname === "/Simuler"}>
+                    }} selected={pathname === "/fabricants"}>
                         <ListItemIcon>
-                            <Icon className={classes.iconCar} >directions_car </Icon>
+                            <Icon className={classes.iconData} >settings</Icon>
                         </ListItemIcon>
-                        Simuler Prix
-            </MenuItem>
+Gestion fabricants            </MenuItem>
+
+           
+                    <MenuItem component={Link} to="/loggs" classes={{
+                        root: classes.menuItemRootCar,
+                        selected: classes.menuItemSelectedCar
+                    }} selected={pathname === "/loggs"}>
+                        <ListItemIcon>
+                            <Icon className={classes.iconCar} >insert_drive_file</Icon>
+                        </ListItemIcon>
+Loggs            </MenuItem>
 
 
                 </MenuList>

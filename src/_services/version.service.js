@@ -11,7 +11,7 @@ export const VersionService = {
 function getVersions(id) {
     console.log("idService",id);
    // return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/version?modeleVersion='+id, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
-   return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/version?modeleVersion='+id)
+   return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/version/?modeleId='+id)
      
    .then((response) => {
             console.log(response);

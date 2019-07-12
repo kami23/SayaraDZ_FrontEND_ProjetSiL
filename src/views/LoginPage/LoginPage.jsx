@@ -1,22 +1,23 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import "./LoginPage.css";
 import { userActions } from '../../_actions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
+//import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
+//import Input from '@material-ui/core/Input';
+//import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import loginImage from '../../assets/img-01.png'
-import PropTypes from 'prop-types';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+//import loginImage from '../../assets/img-01.png'
+
+//import PropTypes from 'prop-types';
+//import Tabs from '@material-ui/core/Tabs';
+//import Tab from '@material-ui/core/Tab';
+//import Typography from '@material-ui/core/Typography';
 
 
 
@@ -62,23 +63,23 @@ class LoginPage extends React.Component {
 
         const { loggingIn } = this.props;
         const { username, password, submitted } = this.state;
-        const value=0, setValue=0;
+       // const value=0,
+   //     const setValue=0;
 
-  function handleChange(event, newValue) {
+  /*function handleChange(event, newValue) {
     setValue(newValue);
-  }
+  }*/
 
         return (
-            <Fragment>
-            <div class="login-page">
+            <Fragment class="frag">   
                <div class="containerLogin">
-
-
-        <div class="form">
+               <img class="logo" src={require('../../assets/SayaraDzLogo.png')}/>
+  
+   <div class="form">
 <form name="form" onSubmit={this.handleSubmit} className="formLogin">
   
     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
-        <h3>Connecter à votre compte </h3>
+        <h3>Connecter comme un utilisateur fabricant </h3>
 
 <TextField
 required
@@ -100,7 +101,7 @@ name="username" value={username} onChange={this.handleChange}
 <TextField
 required
 fullWidth
-name="password" value={password} onChange={this.handleChange}
+name="password" 
 id="outlined-adornment-password"
 variant="outlined"
 type={this.state.showPassword ? 'text' : 'password'}
@@ -121,19 +122,24 @@ onClick={this.handleClickShowPassword}
 ),
 }}
 />
-
 </div>
 <div className="form-group">
+Mot de passe oublié ? Contacter l'administrateur
   <Button id="buttonSubmit"  variant="contained" color="primary" type="submit" className="btn btn-primary">Connecter</Button>
   {loggingIn}
+  
 </div>
 </form>
+
+
 </div>
        
 
             </div>
-            </div>
+            <img src = {require('../../assets/bg12.svg')}/>
+
             </Fragment>
+
         );
     }
 }

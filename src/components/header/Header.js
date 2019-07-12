@@ -84,7 +84,7 @@
     class Header extends React.Component {
       state = {
         anchorEl: null,
-        mobileMoreAnchorEl: null,
+    //    mobileMoreAnchorEl: null,
       };
 
       handleProfileMenuOpen = event => {
@@ -105,7 +105,7 @@
       };
 
       render() {
-        const { anchorEl, mobileMoreAnchorEl } = this.state;
+        const { anchorEl } = this.state;
         const { classes } = this.props;
         const isMenuOpen = Boolean(anchorEl);
      //   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);

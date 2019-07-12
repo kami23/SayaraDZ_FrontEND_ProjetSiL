@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
+//import Input from '@material-ui/core/Input';
+//import OutlinedInput from '@material-ui/core/OutlinedInput';
+//import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
+//import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -40,9 +39,6 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
   },
 
-            root: {
-                flexGrow: 1,
-            },
             appFrame: {
             zIndex: 1,
             overflow: 'hidden',
@@ -113,31 +109,40 @@ class Version extends React.Component {
 
   }
   props = {
-    value: '',
     label: '',
     elements: [],
+    tarif1:"1000000 DA ",
+     tarif2 : "1800000 DA" , 
+     tarif3:"5000000 DA",
+  i:0,
     labelWidth: 0,
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(VersionAction.get());
+ dispatch(ModeleAction.getModele());
 
   }
 
   handleChange (event){    
     const { dispatch } = this.props;
-   this.setState ({text:event.target.options[event.target.selectedIndex].text});
 
-    this.setState({ value: event.target.value }  ,  dispatch(VersionAction.getVersions(this.state.value))
-);
-    console.log("value",this.state.value)
+ this.setState ({text:event.target.options[event.target.selectedIndex].text});
+
+    this.setState({ value: event.target.value }  );
+   dispatch(VersionAction.getVersions(event.target.value))    
+  
+
+  
+
+console.log("value",this.state.value)
 
   };
-  
+  tarifs = ["1000000 da ","1600000 da " , "2100000 da"]
+  i=0;
   render() {
     const { classes } = this.props;
-    const { elements } = this.props.Modele;
+  //  const { elements } = this.props.Modele;
    
     return (
       <div className={classes.root}>
@@ -152,6 +157,11 @@ class Version extends React.Component {
 
                         <Grid container spacing={24}>
                             <Grid item xs={3}>
+                            <Typography variant="h6" color="inherit" noWrap>
+                            Gestion des versions
+                </Typography>                          
+                        
+                        
                             <FormControl required >
           <InputLabel htmlFor="Modele">Modele</InputLabel>
           <Select
@@ -164,10 +174,10 @@ class Version extends React.Component {
             }}
             className={classes.select}
           >
-            <option value="" />
+            <option value ="kami"> </option>
             {this.props.Modele.map(element => {
               return (
-                <option value={element.pk}>{element.nomModele}</option>
+                <option value={element.pk}>{element.nom}</option>
               )
             })}
 
@@ -196,14 +206,17 @@ class Version extends React.Component {
                             <Table>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Code Version</TableCell>
-                                        <TableCell>Nom Version</TableCell>
-                                        <TableCell>Modele Version</TableCell>
-                                        <TableCell>Tarif Version</TableCell>
-                                        
-                                        <TableCell>Options Compatible</TableCell>
-                                        
-                                        <TableCell>Action</TableCell>
+                                        <TableCell> 
+                                        <Typography variant="h6">
+                                        Code Version
+                                    </Typography>  
+                                      </TableCell>
+                                        <TableCell>                                         <Typography variant="h6">
+ Nom Version                                     </Typography>  
+ </TableCell>
+                                       
+                                        <TableCell> <Typography variant="h6"> Tarif Version </Typography> </TableCell> 
+                                        <TableCell> <Typography variant="h6"> Action </Typography> </TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -211,28 +224,26 @@ class Version extends React.Component {
                                     return (
                                         <TableRow key={n.idModele}>
                                         <TableCell component="th" scope="row">
-                                            {n.codeVersion}
+                                            {n.code}
                                             </TableCell>
                                             <TableCell component="th" scope="row">
-                                            {n.nomVersion}
+                                            {n.nom}
                                             </TableCell>
 
                                             <TableCell component="th" scope="row">
-                                            {this.state.text}
+                                            {n.modele_name}
                                             </TableCell>
                                             
                                             <TableCell component="th" scope="row">
+                                            {this.tarifs[this.i++]}
                                             </TableCell>
-                                            
-                                            
-                                            <TableCell component="th" scope="row">
-                                            </TableCell>
+                                         
                                             <TableCell>
                                                 <IconButton className={classes.buttonEdit} aria-label="Modifier" component={Link} to={`/edit-version/${n.idVersion}`}>
-                                                <EditIcon />
+                                                <EditIcon/>
                                                 </IconButton>
                                                 <IconButton className={classes.buttonDelete} aria-label="Supprimer" onClick={(event) => this.handleClick(event, n.idVersion)}>
-                                                <DeleteIcon /> 
+                                                <DeleteIcon/> 
                                                 </IconButton>
                                             </TableCell>
                                         </TableRow>

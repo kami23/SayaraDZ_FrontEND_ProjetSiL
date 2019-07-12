@@ -2,6 +2,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Modele } from '../components/modeles/modele.component'
+//import { Modele } from '../components/modeles/mod'
 import { AddModele } from '../components/modeles/Addmodele.component'
 import { Version } from '../components/versions/version.component'
 import { AddVersion } from '../components/versions/AddVersion.component'
@@ -9,10 +10,11 @@ import { AddOption } from '../components/options/AddOption.component'
 import { Option } from '../components/options/option.component'
 import { Color } from '../components/colors/color.component'
 import { AddColor } from '../components/colors/Addcolor.component'
-
+import {Commande} from '../components/commande/commande.component'
+import {Fichier} from '../components/acceuil/fichier.component'
 const routes = (
   <Switch>
-    <Route exact path='/Acceuil' />
+    <Route exact path='/Acceuil' component={Fichier} />
     <Route exact path='/Commande' />
     <Route exact path='/Simuler' />
 
@@ -31,8 +33,9 @@ const routes = (
     <Route exact path='/colors' component={Color} />
     <Route exact path='/add-color' component={AddColor} />
     <Route exact path='/edit-color/:id' component={AddColor} />
-
-
+     
+    <Route exact path='/commandes' component={Commande} />
+    
   </Switch>
 );
 

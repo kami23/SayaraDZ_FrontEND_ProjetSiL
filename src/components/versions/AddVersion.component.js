@@ -16,7 +16,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 import { ModeleAction } from '../../_actions';
-import { isNullOrUndefined } from 'util';
+//import { isNullOrUndefined } from 'util';
 
 const drawerWidth = 240;
 const styles = theme => ({
@@ -64,32 +64,6 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 2,
     },
 
-    appFrame: {
-        zIndex: 1,
-        overflow: 'hidden',
-        position: 'relative',
-        display: 'flex',
-        width: '100%',
-    },
-    appBar: {
-        width: `calc(100% - ${drawerWidth}px)`,
-    },
-    'appBar-left': {
-        marginLeft: drawerWidth,
-    },
-    'appBar-right': {
-        marginRight: drawerWidth,
-    },
-    drawerPaper: {
-        position: 'relative',
-        width: drawerWidth,
-    },
-    toolbar: theme.mixins.toolbar,
-    content: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.default,
-        padding: theme.spacing.unit * 3,
-    },
     paper: {
         position: 'absolute',
         width: theme.spacing.unit * 50,
@@ -97,9 +71,21 @@ const styles = theme => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 4,
     },
-    table: {
-        minWidth: 700,
+    buttonCancel:{
+        backgroundColor:"#f17e5d",
+        "&:hover":{
+            color:'white',
+            backgroundColor:'#51bcda',
+        }
     },
+    buttonSave:{
+        fontStyle:"Bold",
+        backgroundColor:'#51bcda',
+        "&:hover":{
+            color:'white',
+            backgroundColor:'#f17e5d',
+        }
+    }
 });
 class AddVersion extends Component {
     constructor(props) {
@@ -190,29 +176,8 @@ class AddVersion extends Component {
                                         <form className={classes.container}>
                                             <Grid container spacing={24}>
                                                 <Grid item xs={3}>
-                                                    <TextField
-required
-                                                        id="nomVersion"
-                                                        label="Nom Version"
-                                                        className={classes.textField}
-                                                        value={this.props.nomVersion}
-                                                        margin="normal"
-                                                        onChange={this.handleChange('nomVersion')}
-                                                        required
-                                                    >
-                                                    </TextField>
 
-                                                    <TextField
-                                                        id="codeVersion"
-                                                        label="Code Version"
-                                                        className={classes.textField}
-                                                        value={this.props.codeVersion}
-                                                        margin="normal"
-                                                        onChange={this.handleChange('codeVersion')}
-                                                    >
-                                                    </TextField>
-
-                                                    <FormControl required >
+                                                <FormControl required >
                                                         <InputLabel htmlFor="Modele">Modele</InputLabel>
                                                         <Select
                                                             native
@@ -226,24 +191,36 @@ required
                                                             <option value="" />
                                                             {this.props.Modele.map(element => {
                                                                 return (
-                                                                    <option value={element.idModele}>{element.nomModele}</option>
+                                                                    <option value={element.idModele}>{element.nom}</option>
                                                                 )
                                                             })}
 
                                                         </Select>
                                                     </FormControl>
-
+                                                    <br></br>
+                                        
                                                     <TextField
-                                                    
-                                                        id="optionsVersion"
-                                                        label="optionsVersion"
+                                                        required
+                                                        id="nomVersion"
+                                                        label="Nom Version"
                                                         className={classes.textField}
-                                                        value={this.props.optionsVersion}
+                                                        value={this.props.nomVersion}
                                                         margin="normal"
-                                                        onChange={this.handleChange('codeModele')}
+                                                        onChange={this.handleChange('nomVersion')}
                                                     >
                                                     </TextField>
 
+                                                    <TextField
+                                                        id="codeVersion"
+                                                        label="Code Version"
+                                                        className={classes.textField}
+                                                        value={this.props.codeVersion}
+                                                        margin="normal"
+                                                        onChange={this.handleChange('codeVersion')}
+                                                    >
+                                                    </TextField>
+
+                                                  
                                                 </Grid>
 
                                             </Grid>
@@ -256,10 +233,10 @@ required
                                                 <Grid item xs={3} container justify="center">
                                                     <Grid container spacing={24}>
                                                         <Grid item xs={6} container justify="center">
-                                                            <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/versions">Cancel</Button>
+                                                            <Button variant="contained" color="secondary" className={classes.buttonCancel} component={Link} to="/versions">Annuler</Button>
                                                         </Grid>
                                                         <Grid item xs={6} container justify="flex-start">
-                                                            <Button variant="contained" color="primary" className={classes.button} onClick={(event) => this.handleClick(event)}>Save</Button>
+                                                            <Button variant="contained" color="primary" className={classes.buttonSave} onClick={(event) => this.handleClick(event)}>Enregistrer</Button>
                                                         </Grid>
                                                     </Grid>
                                                 </Grid>
@@ -279,7 +256,6 @@ AddVersion.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => {
-    console.log("nameModele")
     return {
         idVersion: state.Version.idVersion,
         nomVersion: state.Version.nomVesion,

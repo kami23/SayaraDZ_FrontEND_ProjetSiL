@@ -9,9 +9,9 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { ModeleAction } from '../../_actions';
 import { withRouter, Link } from 'react-router-dom';
-import Chip from '@material-ui/core/Chip';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add'
+//import Chip from '@material-ui/core/Chip';
+//import Fab from '@material-ui/core/Fab';
+//import AddIcon from '@material-ui/icons/Add'
 const drawerWidth = 240;
 const styles = theme => ({
     root: {
@@ -94,23 +94,30 @@ class AddModele extends Component {
         if (params.id) {
             const { dispatch } = this.props;
             dispatch(ModeleAction.getModeleById(params.id));
+            console.log("comme "+params.id);
             this.setState({chipColors:this.props.couleur_set})
         }
     }
+    
     handleClick(event) {
-        const { match: { params } } = this.props;
+       // const { match: { params } } = this.props;
         const { dispatch } = this.props;
         let payload = {
-            nomModele: this.props.nomModele,
-            marqueModele: JSON.parse(localStorage.getItem('user')).marqueid,
-            couleur_set: this.props.couleur_set,
-            codeModele: this.props.codeModele
+            ref: 36,
+            code: "123",
+            image:"image..."
         }
-        if (params.id) {
+        console.log(payload)
+
+
+        dispatch(ModeleAction.createModele(payload));
+
+       /* if (params.id) {
             dispatch(ModeleAction.editModeleInfo(params.id, payload));
         } else {
+            console.log(payload)
             dispatch(ModeleAction.createModele(payload));
-        }
+        }*/
     }
     render() {
         const { classes } = this.props;
@@ -128,32 +135,8 @@ class AddModele extends Component {
             }
             return <InsertText />;
         }
-        var brand = (
-            <Grid item xs={3}>
-            <TextField
-                id="codeModele"
-                label="Code Modele"
-                className={classes.textField}
-                value={this.props.codeModele}
-                margin="normal"
-                onChange={this.handleChange('codeModele')}
-            >
-            </TextField>
-            <TextField
-                id="nomCouleur"
-                label="Name"
-                className={classes.textField}
-                value={nomModele}
-                margin="normal"
-                onChange={this.handleChange('nomCouleur')}
-            > 
-            </TextField>
-
-            </Grid>
-    
-        );
-
-        const nomModele = this.props.nomModele;
+        
+        const ref = this.props.ref;
         return (
 
             <div className={classes.root}>
@@ -177,47 +160,27 @@ class AddModele extends Component {
                                             <Grid container spacing={24}>
                                                 <Grid item xs={3}>
                                                     <TextField
-                                                        id="codeModele"
+                                                        id="code"
                                                         label="Code Modele"
                                                         className={classes.textField}
-                                                        value={this.props.codeModele}
+                                                        value={this.props.code}
                                                         margin="normal"
-                                                        onChange={this.handleChange('codeModele')}
+                                                        onChange={this.handleChange('code')}
                                                     >
                                                     </TextField>
                                                     <TextField
-                                                        id="nomModele"
+                                                        id="ref"
                                                         label="Name"
                                                         className={classes.textField}
-                                                        value={nomModele}
+                                                        value={ref}
                                                         margin="normal"
-                                                        onChange={this.handleChange('nomModele')}
+                                                        onChange={this.handleChange('ref')}
                                                     >
                                                     </TextField>
                                                     <br /><br /><br />
                                                     <label> Couleurs Compatibles</label>
                                                     <br /><br />
-                                                    {this.props.couleur_set.map(couleur => {
-                                                        console.log(couleur)
-                                                        return (
-
-                                                            <Chip
-                                                                key={couleur.pk}
-                                                                label={couleur.nomCouleur}
-                                                                onDelete={this.handleDelete.bind(couleur.pk)}
-
-                                                                className={classes.chip}
-                                                            />
-                                                        );
-                                                    })}
                                                     <br/>
-<label> Add couleur</label>
-
-                                                    <Fab size="small" color="secondary" onClick={this.addColorClick} aria-label="Add" className={classes.margin}>
-          <AddIcon />
-        </Fab>
-
-        {this.state.showAddColorForm }
 
                                                 </Grid>
 
@@ -256,15 +219,14 @@ AddModele.propTypes = {
 };
 
 AddModele.defaultProps = {
-    nomModele: 'blue'
+    
 };
 const mapStateToProps = (state) => {
 
     return {
-        idModele: state.Modele.idModele,
-        nomModele: state.Modele.nomModele,
-        codeModele: state.Modele.codeModele,
-        couleur_set: state.Modele.couleur_set
+        pk: state.Modele.pk,
+        ref: state.Modele.ref,
+        code: state.Modele.code,
     }
 }
 

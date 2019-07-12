@@ -1,11 +1,13 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_util';
 import { HomePage } from '../views/HomePage';
+//import { AdminPage } from '../views/AdminPage/AdminPage';
+//import { Modele } from '../components/modeles/mod'
+import {Modele} from '../components/modeles/modele.component'
 import { LoginPage } from '../views/LoginPage';
 
 class App extends React.Component {
@@ -23,16 +25,16 @@ class App extends React.Component {
         const { alert } = this.props;
         return (
             <div>
-               {alert.message &&
-                            <div className={`alert ${alert.type}`}>{alert.message}</div>
-                        }
-                        <Router history={history}>
-                            <div>
-                                <PrivateRoute exact path="/" component={HomePage} />
-                                <Route path="/login" component={LoginPage} />
-                                                      </div>
-                        </Router>
-                    
+                {alert.message &&
+                    <div className={`alert ${alert.type}`}>{alert.message}</div>
+                }
+                <Router history={history}>
+                    <div>
+                        <PrivateRoute exact path="/" component={HomePage} />
+                        <Route path="/login" component={LoginPage} />
+                    </div>
+                </Router>
+
             </div>
         );
     }
@@ -40,7 +42,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
     const { alert } = state;
-    return {alert};
+    return { alert };
 }
 
 const connectedApp = connect(mapStateToProps)(App);

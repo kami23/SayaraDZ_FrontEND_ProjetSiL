@@ -65,7 +65,7 @@ state={
             <option value="" />
             {this.props.elements.map(element => {
                 return(
-                <option value={element.idModele}>{element.nomModele}</option>
+                <option value={element.idModele}>{element.nom}</option>
                 )
             })}
             

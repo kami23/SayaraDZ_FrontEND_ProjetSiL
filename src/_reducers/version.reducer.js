@@ -13,6 +13,13 @@ export function Version(state = initialState, action) {
                 ...state,
                 Versions: action.Versions
             };
+
+            case 'FETECHED_Versions_per_Modele':
+
+            return {
+                ...state,
+                Versions: action.Versions
+            };
             case 'Version_DETAIL':
                         return {
                             ...state,
@@ -22,7 +29,7 @@ export function Version(state = initialState, action) {
                             idVersion: action.idVersion,
                        
                         };
-                    case "USER_UPDATED":
+                    case "Version_UPDATED":
                         return state;
                     case "HANDLE_ON_CHANGE":
                         return {

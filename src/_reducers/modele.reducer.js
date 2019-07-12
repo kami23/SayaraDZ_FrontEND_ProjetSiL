@@ -1,9 +1,8 @@
             const initialState = { 
                 Modele: [],
-                idModele:'',
-                nomModele:'',
-                codeModele:'',
-                couleur_set:[]
+                pk:'',
+                ref:'',
+                code:'',
             };
             export function Modele(state = initialState, action) {
                 switch (action.type) {
@@ -18,11 +17,17 @@
                     console.log("reducer"+action.nom)
                         return {
                             ...state,
-                            idModele: action.idModele,
-                            nomModele: action.nomModele,
-                            codeModele: action.codeModele,
-                            couleur_set:action.couleur_set
+                            pk:action.pk,
+                            ref: action.ref,
+                            code: action.code,
                         };
+                 case 'Modele_CREATED': 
+                 return {
+                    ...state,
+                    pk:action.pk,
+                    ref: action.ref,
+                    code: action.code,
+                 };
                     case "USER_UPDATED":
                         return state;
                     case "HANDLE_ON_CHANGE":

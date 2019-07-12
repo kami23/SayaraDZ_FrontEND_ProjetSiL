@@ -23,24 +23,32 @@ function get(){
         })
     };
 }
-
-
-function getVersions(id){
-    return dispatch => {
-        VersionService.getVersions(id)
-        .then((response)=>{
-            dispatch(changeVersionsList(response.data));
-        }).catch((err)=>{
-            console.log(err);
-        })
-    };
-}
 export function changeVersionsList(Versions){
     return{
         type: "FETECHED_ALL_Versions",
         Versions: Versions
     }
 }
+
+
+function getVersions(id){
+    return dispatch => {
+        VersionService.getVersions(id)
+        .then((response)=>{
+            dispatch(changeVersionsListModele(response.data));
+        }).catch((err)=>{
+            console.log(err);
+        })
+    };
+}
+
+export function changeVersionsListModele(Versions){
+    return{
+        type: "FETECHED_Versions_per_Modele",
+        Versions: Versions
+    }
+}
+
 
 function deleteVersionById(id){
     return dispatch => {

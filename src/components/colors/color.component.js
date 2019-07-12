@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
+//import Input from '@material-ui/core/Input';
+//import OutlinedInput from '@material-ui/core/OutlinedInput';
+//import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
+//import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -40,9 +40,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
   },
 
-            root: {
-                flexGrow: 1,
-            },
+        
             appFrame: {
             zIndex: 1,
             overflow: 'hidden',
@@ -76,9 +74,29 @@ const styles = theme => ({
                 boxShadow: theme.shadows[5],
                 padding: theme.spacing.unit * 4,
             },
+            select:{
+                minWidth:100
+                  },
+                
             table: {
                 minWidth: 700,
             },
+            buttonEdit:{
+                color:'#6bd098',
+            },
+            buttonDelete:{
+                color:'#6bd098'
+            },
+            buttonAdd:{
+                color:"white",
+                  fontStyle:"Bold",
+                  backgroundColor:'#51bcda',
+                  "&:hover":{
+                      width:'200px',
+                      color:'white',
+                      backgroundColor:'#6bd098',
+                  }
+              }
         });
 
 class Color extends React.Component {
@@ -107,7 +125,7 @@ dispatch(ColorAction.getColors());
 
   handleChange (event){    
     const { dispatch } = this.props;
-   this.setState ({text:event.target.Colors[event.target.selectedIndex].text});
+   this.setState ({text:event.target.options[event.target.selectedIndex].text});
 
     this.setState({ value: event.target.value }  ,  dispatch(ColorAction.getColors(this.state.value))
 );
@@ -126,12 +144,34 @@ dispatch(ColorAction.getColors());
                         <main className={classes.content}>
                         <div className={classes.toolbar} />
                         <Grid container spacing={24}>
-                            <Grid item xs={3}>
-                                <Typography>{'Color'}</Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                            </Grid>
-                            <Grid item xs={3} container justify="flex-end">
+                                           
+                            <Grid item xs={3} container >
+                            <Typography variant="h6" color="inherit" noWrap>
+                            Gestion des couleurs
+                            </Typography>                        
+                           
+                            <FormControl required >
+          <InputLabel htmlFor="Modele">Modele</InputLabel>
+          <Select
+            native
+            value={this.state.value}
+            onChange={this.handleChange}
+            name="value"
+            inputProps={{
+              id: "Modele",
+            }}
+            className={classes.select}
+          >
+            <option value="" />
+            {this.props.Modele.map(element => {
+              return (
+                <option value={element.pk}>{element.nom}</option>
+              )
+            })}
+
+
+          </Select>
+        </FormControl>
                             </Grid>
                         </Grid>
                         <Grid container spacing={24}>
@@ -140,8 +180,8 @@ dispatch(ColorAction.getColors());
                             <Grid item xs={6}>
                             </Grid>
                             <Grid item xs={3} container justify="flex-end">
-                                <Button variant="contained" color="primary" className={classes.button} 
-                                component={Link} to={`/add-Color`}>Add Color</Button>
+                                <Button variant="contained" color="primary" className={classes.buttonAdd} 
+                                component={Link} to={`/add-Color`}>Ajouter une Couleur </Button>
                         
                             </Grid>
                         </Grid>
@@ -169,10 +209,10 @@ dispatch(ColorAction.getColors());
                                             </TableCell>
 
                                             <TableCell>
-                                                <IconButton className={classes.button} aria-label="Edit" component={Link} to={`/edit-Color/${n.idColor}`}>
+                                                <IconButton className={classes.buttonDelete} aria-label="Edit" component={Link} to={`/edit-Color/${n.idColor}`}>
                                                 <EditIcon />
                                                 </IconButton>
-                                                <IconButton className={classes.button} aria-label="Delete" onClick={(event) => this.handleClick(event, n.idColor)}>
+                                                <IconButton className={classes.buttonEdit} aria-label="Delete" onClick={(event) => this.handleClick(event, n.idColor)}>
                                                 <DeleteIcon /> 
                                                 </IconButton>
                                             </TableCell>
@@ -198,6 +238,8 @@ Color.propTypes = {
 const mapStateToProps = (state) => {
   return {
     Color: state.Color,
+    Modele: state.Modele.Modele
+
   };
 }
 const connectedColorPage = withRouter(connect(mapStateToProps, null, null, {

@@ -21,7 +21,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Chip from '@material-ui/core/Chip';
+import InputBase from '@material-ui/core/InputBase';
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 
 const drawerWidth = 240;
 const styles = theme => ({
@@ -64,23 +65,26 @@ const styles = theme => ({
     table: {
         minWidth: 700,
     },
-    buttonEdit:{
-        color:'#6bd098',
+    buttonEdit: {
+        color: '#6bd098',
     },
-    buttonDelete:{
-        color:'#6bd098'
+    buttonDelete: {
+        color: '#6bd098'
     },
-    buttonAdd:{
-        fontStyle:"Bold",
-        backgroundColor:'#51bcda',
-        "&:hover":{
-            width:'200px',
-            color:'white',
-            backgroundColor:'#6bd098',
+    buttonAdd: {
+        fontStyle: "Bold",
+        backgroundColor: '#51bcda',
+        "&:hover": {
+            width: '200px',
+            color: 'white',
+            backgroundColor: '#6bd098',
         }
     }
+
+
 });
-const chipColors=[];
+
+
 class Modele extends Component {
     state = {
         open: false,
@@ -89,7 +93,7 @@ class Modele extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(ModeleAction.getModele());        
+        dispatch(ModeleAction.getModele());
     }
     handleChange = event => {
         this.setState({
@@ -97,11 +101,6 @@ class Modele extends Component {
         });
     };
 
-    handleDelete=(color)=>{
-        const chipToDelete = chipColors.indexOf(color);
-        chipColors.splice(chipToDelete, 1);
-console.log("chips"+chipColors);
-    }
 
     handleClickOpen = (event, id) => {
         const { dispatch } = this.props;
@@ -123,12 +122,15 @@ console.log("chips"+chipColors);
         return (
             <div className={classes.root}>
 
+
                 <div className={classes.appFrame}>
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
                         <Grid container spacing={24}>
                             <Grid item xs={3}>
-                                <Typography>{'Modele'}</Typography>
+                                <Typography variant="h6" color="inherit" noWrap>
+                                    Gestion des Modèles
+                                </Typography>
                             </Grid>
                             <Grid item xs={6}>
                             </Grid>
@@ -137,6 +139,12 @@ console.log("chips"+chipColors);
                         </Grid>
                         <Grid container spacing={24}>
                             <Grid item xs={3}>
+                                <Paper>
+                                    <InputBase
+                                        placeholder="Search…"
+                                        inputProps={{ 'aria-label': 'Search' }} />
+                                </Paper>
+
                             </Grid>
                             <Grid item xs={6}>
                             </Grid>
@@ -147,16 +155,27 @@ console.log("chips"+chipColors);
                         </Grid>
                         <br /><br />
                         <Grid container >
+
                             <Paper className={classes.root}>
-                                <Table>
+
+                                <Table size="small">
                                     <TableHead>
                                         <TableRow>
-
-                                            <TableCell>Code Modele</TableCell>
-                                            <TableCell>Nom Modele</TableCell>
-                                            <TableCell>Couleur Compatible</TableCell>
-
-                                            <TableCell>Action</TableCell>
+                                            <TableCell>
+                                                <Typography variant="h6" noWrap>
+                                                    Code Modele
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant="h6" noWrap>
+                                                    Nom Modele 
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant="h6" noWrap>
+                                                    Action 
+                                                </Typography> 
+                                            </TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -164,30 +183,16 @@ console.log("chips"+chipColors);
                                             return (
                                                 <TableRow key={n.pk}>
                                                     <TableCell component="th" scope="row">
-                                                        {n.codeModele}
+                                                        {n.code}
                                                     </TableCell>
                                                     <TableCell component="th" scope="row">
-                                                        {n.nomModele}
+                                                        {n.ref}
                                                     </TableCell>
-                                                    <TableCell component="th" scope="row">
-                                                        {n.couleur_set.map(couleur => {
-                                                            chipColors.push(couleur)
-                                                            return (
-
-                                                                <Chip
-                                                                    key={couleur.pk}
-                                                                    label={couleur.codeCouleur+"  "+couleur.nomCouleur}
-                                                                    className={classes.chip}
-                                                                />
-                                                            );
-                                                        })}
-                                                    </TableCell>
-
                                                     <TableCell>
                                                         <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Modele/${n.pk}`}>
                                                             <EditIcon />
                                                         </IconButton>
-                                                        <IconButton className={classes.buttonDelete} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.idModele)}>
+                                                        <IconButton className={classes.buttonDelete} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.pk)}>
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </TableCell>
@@ -207,18 +212,25 @@ console.log("chips"+chipColors);
                         open={this.state.open}
                         onClose={this.handleClose}
                         aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"  >
-                        <DialogTitle id="alert-dialog-title">{"Attention!"}</DialogTitle>
+                        aria-describedby="alert-dialog-description">
+
+                        <DialogTitle id="alert-dialog-title">
+                        {"Attention!"}
+                        </DialogTitle>
+
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description">
-                                Voulez-Vous vraiment supprimer ce modèle ? </DialogContentText>
+                                Voulez-Vous vraiment supprimer ce modèle ? 
+                            </DialogContentText>
                         </DialogContent>
+
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
                                 Annuler
-                    </Button>
+                            </Button>
                             <Button onClick={this.handleClick} color="primary" autoFocus>
-                                Confirmer            </Button>
+                                Confirmer           
+                            </Button>
                         </DialogActions>
                     </Dialog>
                 </div>

@@ -1,6 +1,6 @@
 import { userConstants } from '../_constants';
 import { userService } from '../_services';
-import { alertActions } from './';
+//import { alertActions } from './';
 import { history } from '../_helpers';
 
 // this file is for actions that are related to user's login and logout

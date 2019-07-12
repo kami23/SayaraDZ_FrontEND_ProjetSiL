@@ -1,31 +1,31 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .containerLogin{
-  width: 900px;
-  margin: auto;
-display: flex;
-
+  width: 60%;
+  margin-left:10%; 
+  margin-top:0;
+  margin-bottom: 0%;
+  display: flex;
 }
-.containerLogin .imglog{
-  height:70%;
-  width: 50%;
-  margin-top: 5%;
-  margin-right:5%;
+
+.frag {
+  background: rgb(94, 255, 0) !important;
+
 }
 .form {
   display: flex;
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
-  max-width:900px;
+  background: none;
+  max-width:50%;
   margin: 0 auto 100px;
+  margin-left: 30%;
+  margin-bottom: 0%;
   padding: 45px;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .textField{
-  width:200px;
-  
+  width:40%;
 }
 #icon{
 margin:1px;
@@ -35,10 +35,10 @@ margin:1px;
     
 }
 .form #buttonSubmit {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif, bold;
   text-transform: uppercase;
   outline: 0;
-  background: #51CBCE;
+  background: #51BCDA;
   width: 100%;
   border: 0;
   margin-top:20px;
@@ -80,7 +80,7 @@ body {
 
 
 .login-page {
-  padding: 8% 0 0 0;
+ /* padding: 8% 0 0 0;
   margin: auto;
   height: 100vh;
 	width: 100wh;
@@ -89,7 +89,18 @@ body {
 	background-size: 400% 400%;
 	-webkit-animation: Gradient 15s ease infinite;
 	-moz-animation: Gradient 15s ease infinite;
-	animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;*/
+  /*background-image: url("../../assets/bg.png");
+  background-repeat: no-repeat;*/
+}
+
+img {
+  width: 100%;
+  height:20%;
+}
+.logo{
+width:10%;
+height: 10%;
 }
 
 @-webkit-keyframes Gradient {

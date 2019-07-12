@@ -1,5 +1,5 @@
 const initialState = {
-    Options: [],
+    Option: [],
     nomOption: '',
     codeOption: '',
 };
@@ -9,7 +9,7 @@ export function Option(state = initialState, action) {
 
             return {
                 ...state,
-                Options: action.Options
+                Option: action.Option
             };
         case 'Option_DETAIL':
             return {

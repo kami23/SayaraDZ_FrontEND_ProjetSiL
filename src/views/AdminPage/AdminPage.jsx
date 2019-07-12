@@ -1,8 +1,8 @@
-    import React , { Fragment }from 'react';
+    import React from 'react';
     import { connect } from 'react-redux';
     //import LogOut from '../../components/logout/LogOut';
     //import NavBar from '../../components/navbar/NavBar';
-    import "./HomePage.css"
+    import "./AdminPage.css"
     //import {LoginPage }from '../LoginPage/LoginPage.jsx';
     import { BrowserRouter} from 'react-router-dom';
     import routes from '../../routes/routes';
@@ -10,15 +10,15 @@
     import Paper from '@material-ui/core/Paper';
     //import Divider from '@material-ui/core/Divider';
     import Grid from '@material-ui/core/Grid';
-    import SideBar from '../../components/navbar/SideBar1'
+    import SideBar from '../../components/navbar/SideBar2'
 
-    class HomePage extends React.Component {
+    class AdminPage extends React.Component {
 
         render() {
-        //    const { user, users } = this.props;
+         //   const { user, users } = this.props;
             return (
     <BrowserRouter>
-    <Fragment class="cont">
+    <div >
     <Grid container>
         <Grid item xs={2}>
             <Paper className="paper" >
@@ -26,14 +26,11 @@
         </SideBar>       
         </Paper>
             </Grid>
-            <br/>  <br/> <br/>  
-
-            <Grid item xs={10} >
-          
+            <Grid item xs={10} className="mainApp">
         {routes}
             </Grid>
         </Grid>
-                </Fragment>
+                </div>
                 </BrowserRouter>
             );
         }
@@ -48,5 +45,5 @@
         };
     }
 
-    const connectedHomePage = connect(mapStateToProps)(HomePage);
-    export { connectedHomePage as HomePage };
+    const connectedAdminPage = connect(mapStateToProps)(AdminPage);
+    export { connectedAdminPage as AdminPage };

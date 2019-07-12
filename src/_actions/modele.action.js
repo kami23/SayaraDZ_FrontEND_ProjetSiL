@@ -50,10 +50,9 @@
     export function editModeleDetails(Modele){
         return{
             type: "Modele_DETAIL",
-            idModele:Modele[0].idModele,
-            nomModele:Modele[0].nomModele,
-            codeModele:Modele[0].codeModele,
-            couleur_set:Modele[0].couleur_set
+            pk:Modele.pk,
+            ref:Modele.ref,
+            code:Modele.code,
         }
     }
     function onChangeProps(props, event){
@@ -96,7 +95,7 @@
     }
     export function createUserInfo(){
         return{
-            type: "USER_CREATED_SUCCESSFULLY"
+            type: "Modele_CREATED_SUCCESSFULLY"
         }
     }
     export function deleteModeleDetails(){

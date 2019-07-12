@@ -125,7 +125,7 @@ class SideBar extends React.Component {
         <MenuItem component={Link} to="/Acceuil" className={classes.menuItem}>
        Acceuil
         </MenuItem>
-        <MenuItem component={Link} to="/Acceuil" className={classes.menuItem}>
+        <MenuItem component={Link} to="/commandes" className={classes.menuItem}>
        Gestion Commandes
         </MenuItem>
         <MenuItem onClick={this.handleClick} className={classes.menuItem}>

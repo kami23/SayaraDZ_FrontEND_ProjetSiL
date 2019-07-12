@@ -93,11 +93,11 @@ class AddColor extends Component {
         const { classes } = this.props;
         const { match : { params } } = this.props;
         function InsertText(props) {
-            return <Typography>{'Ajouter un nouveau modèle'}</Typography>;
+            return <Typography>{'Ajouter une couleur'}</Typography>;
         }
 
         function EditText(props) {
-            return <Typography>{'Editer un modèle'}</Typography>;
+            return <Typography>{'Editer ue couleur '}</Typography>;
         }
         function SegHeader() {
             if(params.id){
@@ -150,10 +150,10 @@ class AddColor extends Component {
                                 <Grid item xs={3} container justify="center">
                                     <Grid container spacing={24}>
                                         <Grid item xs={6} container justify="center">
-                                            <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/modeles">Annuler</Button>
+                                            <Button variant="contained" color="secondary" className={classes.buttonCancel} component={Link} to="/couleurs">Annuler</Button>
                                         </Grid>
                                         <Grid item xs={6} container justify="flex-start">
-                                            <Button variant="contained" color="primary" className={classes.button} onClick={(event) => this.handleClick(event)}>Enregistrer</Button>
+                                            <Button variant="contained" color="primary" className={classes.buttonSave} onClick={(event) => this.handleClick(event)}>Enregistrer</Button>
                                         </Grid>
                                     </Grid>
                                 </Grid>
