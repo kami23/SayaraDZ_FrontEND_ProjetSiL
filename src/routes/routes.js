@@ -12,12 +12,12 @@ import { Color } from '../components/colors/color.component'
 import { AddColor } from '../components/colors/Addcolor.component'
 import {Commande} from '../components/commande/commande.component'
 import {Fichier} from '../components/acceuil/fichier.component'
+import {MultipleSelect} from '../components/simuler/dropdownlist/dropdownlist.component';
+
 const routes = (
   <Switch>
     <Route exact path='/Acceuil' component={Fichier} />
     <Route exact path='/Commande' />
-    <Route exact path='/Simuler' />
-
     <Route exact path='/modeles' component={Modele} />
     <Route exact path='/add-modele' component={AddModele} />
     <Route exact path='/edit-modele/:id' component={AddModele} />
@@ -36,6 +36,10 @@ const routes = (
      
     <Route exact path='/commandes' component={Commande} />
     
+
+    <Route exact path='/Simuler' component={MultipleSelect} />
+
+
   </Switch>
 );
 

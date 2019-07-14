@@ -23,6 +23,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import InputBase from '@material-ui/core/InputBase';
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import Chip from '@material-ui/core/Chip';
+import {MultipleSelect} from '../../components/simuler/dropdownlist/dropdownlist.component';
+import Slider from '../../components/simuler/slider/Slider'
 
 const drawerWidth = 240;
 const styles = theme => ({
@@ -84,7 +87,6 @@ const styles = theme => ({
 
 });
 
-
 class Modele extends Component {
     state = {
         open: false,
@@ -121,11 +123,10 @@ class Modele extends Component {
         const { Modele } = this.props.Modele;
         return (
             <div className={classes.root}>
-
-
                 <div className={classes.appFrame}>
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
+                        
                         <Grid container spacing={24}>
                             <Grid item xs={3}>
                                 <Typography variant="h6" color="inherit" noWrap>
@@ -205,7 +206,6 @@ class Modele extends Component {
                         </Grid>
                     </main>
                 </div>
-
                 <div>
 
                     <Dialog

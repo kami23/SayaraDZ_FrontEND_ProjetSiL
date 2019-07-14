@@ -326,7 +326,8 @@ class SideBar extends React.Component {
 
                     </Collapse>
 
-                    <MenuItem component={Link} to="/Simuler" classes={{
+                    <MenuItem component={Link} to="/Simuler" button
+                     classes={{
                         root: classes.menuItemRootCar,
                         selected: classes.menuItemSelectedCar
                     }} selected={pathname === "/Simuler"}>

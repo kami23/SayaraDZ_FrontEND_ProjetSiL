@@ -3,7 +3,8 @@ const initialState = {
     idVersion:'',
     nomVersion:'',
     codeVersion:'',
-    modeleVersion:''
+    modeleVersion:'',
+    options:[]
 };
 export function Version(state = initialState, action) {
     switch (action.type) {
@@ -27,6 +28,7 @@ export function Version(state = initialState, action) {
                             codeVersion: action.codeVersion,
                             modeleVersion: action.modeleVersion,
                             idVersion: action.idVersion,
+                            options: action.options
                        
                         };
                     case "Version_UPDATED":

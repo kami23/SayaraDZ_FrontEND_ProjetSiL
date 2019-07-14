@@ -97,8 +97,10 @@ function getVersionById(id){
 export function editVersionDetails(Version){
     return{
         type: "Version_DETAIL",
-        idVersion:Version[0].idVersion,
-        nomVersion:Version[0].nomVersion
+        idVersion:Version[0].pk,
+        nomVersion:Version[0].nom,
+        codeVersion : Version[0].code,
+        options:Version[0].options,
     }
 }
 
