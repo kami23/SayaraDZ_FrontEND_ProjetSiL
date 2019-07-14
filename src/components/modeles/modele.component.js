@@ -25,7 +25,6 @@ import InputBase from '@material-ui/core/InputBase';
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import Chip from '@material-ui/core/Chip';
 import {MultipleSelect} from '../../components/simuler/dropdownlist/dropdownlist.component';
-import Slider from '../../components/simuler/slider/Slider'
 
 const drawerWidth = 240;
 const styles = theme => ({

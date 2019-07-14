@@ -19,7 +19,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Slider } from '../slider/Slider.js';
 import { ModeleAction, VersionAction, OptionAction, ColorAction } from '../../../_actions';
 
 const drawerWidth = 240;
