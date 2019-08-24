@@ -272,7 +272,7 @@ class SideBar extends React.Component {
                         classes={{
                             root: classes.menuItemRootCommande,
                             selected: classes.menuItemSelectedCommande
-                        }} selected={pathname === "commandes"}>
+                        }} selected={pathname === "/commandes"}>
                         <ListItemIcon>
                             <Icon className={classes.iconCommande} >insert_drive_file   </Icon>
                         </ListItemIcon>

@@ -31,7 +31,9 @@ class App extends React.Component {
                 <Router history={history}>
                     <div>
                         <PrivateRoute exact path="/" component={HomePage} />
+                        <div style={{backgroundImage:'/assets/bg12.svg'}}>
                         <Route path="/login" component={LoginPage} />
+                        </div>
                     </div>
                 </Router>
 

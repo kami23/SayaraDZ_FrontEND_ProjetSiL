@@ -3,3 +3,4 @@ export * from './modele.service';
 export * from './version.service';
 export * from './option.service';
 export * from './color.service';
+export * from './commande.service';

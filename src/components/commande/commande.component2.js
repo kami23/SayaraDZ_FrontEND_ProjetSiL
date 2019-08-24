@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { CommandeAction } from '../../_actions';
-import React, { Component } from 'react';
+import { ModeleAction } from '../../_actions';
+import React, { Component,Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -21,10 +21,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import InputBase from '@material-ui/core/InputBase';
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import Chip from '@material-ui/core/Chip';
-import {MultipleSelect} from '../../components/simuler/dropdownlist/dropdownlist.component';
+import UneCommande from './UneCommande';
+import InputBase from '@material-ui/core/InputBase';
+
 import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
 
@@ -69,73 +69,92 @@ const styles = theme => ({
     table: {
         minWidth: 700,
     },
-    buttonEdit: {
-        color: '#6bd098',
+    buttonEdit:{
+        color:'#6bd098',
     },
-    buttonDelete: {
-        color: '#6bd098'
+    buttonDelete:{
+        color:'#6bd098'
     },
-    buttonAdd: {
-        fontStyle: "Bold",
-        backgroundColor: '#51bcda',
-        "&:hover": {
-            width: '200px',
-            color: 'white',
-            backgroundColor: '#6bd098',
+    buttonAdd:{
+        fontStyle:"Bold",
+        backgroundColor:'#51bcda',
+        "&:hover":{
+            width:'200px',
+            color:'white',
+            backgroundColor:'#6bd098',
         }
     }
-
-
 });
 
+const chipColors=[];
 class Commande extends Component {
     state = {
         open: false,
-        idCommande: ''
+        idModele: ''
     };
 
-  
+    componentDidMount() {
+        const { dispatch } = this.props;
+        dispatch(ModeleAction.getModele());        
+    }
+    handleChange = event => {
+        this.setState({
+            anchor: event.target.value,
+        });
+    };
+
+    handleDelete=(color)=>{
+        const chipToDelete = chipColors.indexOf(color);
+        chipColors.splice(chipToDelete, 1);
+console.log("chips"+chipColors);
+    }
+
+    handleClickOpen = (event, id) => {
+        const { dispatch } = this.props;
+        this.setState({ open: true, idModele: id })
+        //   dispatch(ModeleAction.deleteModeleById(id))
+    };
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
+    handleClick = (event) => {
+        const { dispatch } = this.props;
+       // dispatch(ModeleAction.deleteModeleById(this.state.idModele))
+        this.handleClose();
+    };
     render() {
         const { classes } = this.props;
+        const { Modele } = this.props.Modele;
         return (
             <div className={classes.root}>
+
                 <div className={classes.appFrame}>
                     <main className={classes.content}>
-                        <div className={classes.toolbar} />
-                        
-                        <Grid container spacing={24}>
-                            <Grid item xs={3}>
-                                <Typography variant="h6" color="inherit" noWrap>
-                                    Gestion des Modèles
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                            </Grid>
-                            <Grid item xs={3} container justify="flex-end">
-                            </Grid>
-                        </Grid>
-                        <Grid container spacing={24}>
-                            <Grid item xs={3}>
-                                <Paper>
-                                    <InputBase
-                                        placeholder="Search…"
-                                        inputProps={{ 'aria-label': 'Search' }} />
-                                </Paper>
+                    
+                        <br /><br /> <br />
+                     
+                
 
-                            </Grid>
+                        <Grid container spacing={24}>
+                            <Grid item xs={3}>
+                            <Typography variant="h6" color="inherit" noWrap>
+                            Gestion des Commandes
+                </Typography>                       
+                     </Grid>
                             <Grid item xs={6}>
                             </Grid>
                             <Grid item xs={3} container justify="flex-end">
-                                <Button variant="contained" color="primary" className={classes.buttonAdd}
-                                    component={Link} to={`/add-Commande`}>Ajouter un Modèle</Button>
                             </Grid>
                         </Grid>
-                        <br /><br />
+
+                             <br /><br />
+
+
                         <Grid container >
 
-                            <Paper className={classes.root}>
-
-                                <Table size="small">
+<Paper className={classes.root}>
+<Table size="small">
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>
@@ -151,7 +170,7 @@ class Commande extends Component {
                                             
                                             <TableCell>
                                                 <Typography variant="h6" noWrap>
-                                                    date 
+                                                    Date 
                                                 </Typography>
                                             </TableCell>
                                             <TableCell>
@@ -159,68 +178,81 @@ class Commande extends Component {
                                                     Information vhécule 
                                                 </Typography> 
                                             </TableCell>
+                                            <TableCell>
+                                                <Typography variant="h6" noWrap>
+                                                Action
+                                                </Typography> 
+                                            </TableCell>
+
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
                                       
-                                                <TableRow>
+                                                <TableRow onClick={(event) => this.handleClickOpen(event, 1234)}>
                                                     <TableCell component="th" scope="row">
                                                        1234
                                                     </TableCell>
+                                                    
+                                                    <TableCell component="th" scope="row">
+                                                       12/03/2019
+                                                    </TableCell>
+
+                                                    
                                                     <TableCell component="th" scope="row">
                                                        KAMI
                                                     </TableCell>
+
+                                                    
                                                     <TableCell component="th" scope="row">
-                                                     12/02/2019    
-                                                
-                                                                                                        </TableCell>
-                                                    <TableCell component="th" scope="row">
-                                                      Informations
+                                                       Infos
                                                     </TableCell>
                                                     
-                                                    <TableCell>
-                                                        <IconButton className={classes.buttonEdit} aria-label="Edit">
+                                                    <TableCell component="th" scope="row">
+                                                         <IconButton className={classes.buttonEdit} aria-label="Edit" >
                                                             <CloseIcon />
                                                         </IconButton>
                                                         <IconButton className={classes.buttonDelete} aria-label="Delete" >
                                                             <DoneIcon />
-                                                        </IconButton>
-                                                    </TableCell>
+                                                        </IconButton>                                                    </TableCell>
                                                 </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </Paper>
-                        </Grid>
+                          </TableBody>
+                          </Table>
+</Paper>
+</Grid>
+
                     </main>
                 </div>
-                <div>
 
-                    <Dialog
-                        open={this.state.open}
-                        onClose={this.handleClose}
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description">
 
-                        <DialogTitle id="alert-dialog-title">
-                        {"Attention!"}
-                        </DialogTitle>
+     <div>
 
-                        <DialogContent>
-                            <DialogContentText id="alert-dialog-description">
-                                Voulez-Vous vraiment supprimer ce modèle ? 
-                            </DialogContentText>
-                        </DialogContent>
+<Dialog
+    open={this.state.open}
+    onClose={this.handleClose}
+    aria-labelledby="alert-dialog-title"
+    aria-describedby="alert-dialog-description">
 
-                        <DialogActions>
-                            <Button onClick={this.handleClose} color="primary">
-                                Annuler
-                            </Button>
-                            <Button onClick={this.handleClick} color="primary" autoFocus>
-                                Confirmer           
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
-                </div>
+    <DialogTitle id="alert-dialog-title">
+    {"Attention!"}
+    </DialogTitle>
+
+    <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+            Voulez-Vous vraiment supprimer ce modèle ? 
+        </DialogContentText>
+    </DialogContent>
+
+    <DialogActions>
+        <Button onClick={this.handleClose} color="primary">
+            Annuler
+        </Button>
+        <Button onClick={this.handleClick} color="primary" autoFocus>
+            Confirmer           
+        </Button>
+    </DialogActions>
+</Dialog>
+</div>
+
             </div>
         );
     }
@@ -230,7 +262,7 @@ Commande.propTypes = {
 };
 const mapStateToProps = (state) => {
     return {
-        Commande: state.Commande
+        Modele: state.Modele
     };
 }
 const connectedCommandePage = withRouter(connect(mapStateToProps, null, null, {
