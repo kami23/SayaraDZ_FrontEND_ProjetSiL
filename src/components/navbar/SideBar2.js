@@ -20,7 +20,6 @@ const drawerWidth = 240;
 
 const styles = theme => ({
     root: {
-        
         display: 'flex',
         boxShadow: '2px 4px 19px rgba(0, 0, 0, 0.25)',
     },
@@ -46,7 +45,6 @@ const styles = theme => ({
     },
     menuItemRoot: {
         fontStyle: 'bold',
-        backgroundColor: 'white',
         width: '88%',
         "&$menuItemSelected, &$menuItemSelected:focus, &$menuItemSelected:hover": {
             borderLeft: '4px solid #51bcda',
@@ -63,7 +61,6 @@ const styles = theme => ({
     },
     menuItemRootHome: {
         fontStyle: 'bold',
-        backgroundColor: 'white',
         width: '88%',
         "&$menuItemSelectedHome, &$menuItemSelectedHome:focus, &$menuItemSelectedHome:hover": {
             borderLeft: '6px solid #51bcda',
@@ -76,7 +73,6 @@ const styles = theme => ({
     },
     menuItemRootCommande: {
         fontStyle: 'bold',
-        backgroundColor: 'white',
         width: '88%',
         "&$menuItemSelectedCommande, &$menuItemSelectedCommande:focus, &$menuItemSelectedCommande:hover": {
             borderLeft: '6px solid #fcc468',
@@ -92,7 +88,6 @@ const styles = theme => ({
         paddingLeft: theme.spacing.unit * 4,
 
         fontStyle: 'bold',
-        backgroundColor: 'white',
         width: '88%',
         "&$menuItemSelectedData, &$menuItemSelectedData:focus, &$menuItemSelectedData:hover": {
             borderLeft: '6px solid #f17e5d',
@@ -106,7 +101,6 @@ const styles = theme => ({
     
     menuItemRootCar: {
         fontStyle: 'bold',
-        backgroundColor: 'white',
         width: '88%',
         "&$menuItemSelectedCar, &$menuItemSelectedCar:focus, &$menuItemSelectedCar:hover": {
             borderLeft: '6px solid #6bd098',
@@ -130,12 +124,10 @@ const styles = theme => ({
     },
     menuItemactive: {
         fontStyle: 'bold',
-        backgroundColor: 'red',
         width: '88%',
     },
     menuItem: {
         fontStyle: 'bold',
-        backgroundColor: 'white',
         width: '88%',
         ' &:active': {
             borderLeft: '4px solid #51bcda',
@@ -158,13 +150,13 @@ const styles = theme => ({
     primary: {},
     menu: {
         width: '100%',
-        backgroundColor: 'white'
     },
 
    
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
         boxShadow: '2px 4px 19px rgba(0, 0, 0, 0.25)',
+        backgroundColor: '#2e2d2c',
 
         width: drawerWidth,
 
@@ -174,20 +166,24 @@ const styles = theme => ({
         padding: theme.spacing.unit * 3,
     },
     userProfile: {
-        marginTop: '20%'
+        marginTop: '20%',
+        hight:'70%',
     },
     userName: {
         marginTop:'5px',
         marginLeft:'80px',
-        align: 'center'
+        align: 'center',
+        color:'#ffffff'
     },
     title: {
         width:"108%",
    height:"66px",
+   color:'#ffffff',
    borderButtom:"4px solid black",
    padding:'20px',
    paddingLeft:'40px'
     },
+   
   
 });
 
@@ -237,7 +233,7 @@ class SideBar extends React.Component {
         );
 
         const drawer = (
-            <div>
+            <div className={classes.side}>
                 <Hidden smDown>
                     <div className={classes.toolbar} >
                         {brand}

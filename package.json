@@ -1,5 +1,5 @@
 {
-  "name": "debates",
+  "name": "SayaraDz-EE",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -61,9 +61,8 @@
     "enzyme-to-json": "^3.3.5"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>__tests__/setup/setupEnzyme.js",
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/setup/"
+    "watchPathIgnorePatterns": [
+      "<rootDir>/dist"
     ]
   }
 }
