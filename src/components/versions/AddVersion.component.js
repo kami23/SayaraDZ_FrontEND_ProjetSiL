@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { VersionAction } from '../../_actions';
 import { withRouter, Link } from 'react-router-dom';
-
+import Chip from '@material-ui/core/Chip';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -87,6 +87,8 @@ const styles = theme => ({
         }
     }
 });
+
+const chipOptions =[]
 class AddVersion extends Component {
     constructor(props) {
         super(props);
@@ -113,13 +115,12 @@ class AddVersion extends Component {
     componentDidMount() {
         const { match: { params } } = this.props;
         const { dispatch } = this.props;
-
+        this.setState({value:params.value})
         if (params.id) {
             dispatch(VersionAction.getVersionById(params.id));
         }
         else {
             dispatch(ModeleAction.getModele());
-
         }
     }
     handleClick(event) {
@@ -191,7 +192,7 @@ class AddVersion extends Component {
                                                             <option value="" />
                                                             {this.props.Modele.map(element => {
                                                                 return (
-                                                                    <option value={element.idModele}>{element.nom}</option>
+                                                                    <option value={element.pk}>{element.nom}</option>
                                                                 )
                                                             })}
 
@@ -204,7 +205,7 @@ class AddVersion extends Component {
                                                         id="nomVersion"
                                                         label="Nom Version"
                                                         className={classes.textField}
-                                                        value={this.props.nomVersion}
+                                                        value={this.props.nom}
                                                         margin="normal"
                                                         onChange={this.handleChange('nomVersion')}
                                                     >
@@ -214,13 +215,27 @@ class AddVersion extends Component {
                                                         id="codeVersion"
                                                         label="Code Version"
                                                         className={classes.textField}
-                                                        value={this.props.codeVersion}
+                                                        value={this.props.code}
                                                         margin="normal"
                                                         onChange={this.handleChange('codeVersion')}
                                                     >
                                                     </TextField>
 
-                                                  
+                                             <TextField>
+
+                                                    {this.props.options.map(option => {
+                                                            chipOptions.push(option)
+                                                            return (
+
+                                                                <Chip
+                                                                    key={option.code}
+                                                                    label={option.nom}
+                                                                    className={classes.chip}
+                                                                />
+                                                            );
+                                                        })}
+
+</TextField>
                                                 </Grid>
 
                                             </Grid>
@@ -257,10 +272,11 @@ AddVersion.propTypes = {
 };
 const mapStateToProps = (state) => {
     return {
-        idVersion: state.Version.idVersion,
-        nomVersion: state.Version.nomVesion,
-        codeVersion: state.Version.codeVesion,
-        modeleVersion: state.Version.modeleVersion,
+        pk: state.Version.id,
+        nom: state.Version.nom,
+        code: state.Version.code,
+        modele: state.Version.modele,
+        options:state.Version.options,
         Modele: state.Modele.Modele
     }
 }

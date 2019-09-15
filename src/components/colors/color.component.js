@@ -23,7 +23,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ModeleAction,ColorAction } from '../../_actions';
+import { ModeleAction,ColorAction,alertActions } from '../../_actions';
 
 const drawerWidth = 240;
   
@@ -120,14 +120,15 @@ class Color extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-dispatch(ColorAction.getColors());
+    dispatch(alertActions.clear());
+    dispatch(ModeleAction.getModele());
   }
 
   handleChange (event){    
     const { dispatch } = this.props;
    this.setState ({text:event.target.options[event.target.selectedIndex].text});
 
-    this.setState({ value: event.target.value }  ,  dispatch(ColorAction.getColors(this.state.value))
+    this.setState({ value: event.target.value }  ,  dispatch(ColorAction.getColorbyModeleId(event.target.value))
 );
     console.log("value",this.state.value)
 
@@ -191,28 +192,40 @@ dispatch(ColorAction.getColors());
                             <Table>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Code Color</TableCell>
-                                        <TableCell>Nom Color</TableCell>
-                                        <TableCell>Action</TableCell>
+                                        <TableCell>                                         
+                                        <Typography variant="h6">
+                                        Code Color
+                                        </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                        <Typography variant="h6">
+                                        Nom Color
+                                        </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                        <Typography variant="h6">
+                                        Action
+                                        </Typography>    
+                                        </TableCell>
                                         
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                 {Color.map(n => {
                                     return (
-                                        <TableRow key={n.codeCouleur}>
+                                        <TableRow key={n.pk}>
                                         <TableCell component="th" scope="row">
-                                            {n.codeCouleur}
+                                            {n.code}
                                             </TableCell>
                                             <TableCell component="th" scope="row">
-                                            {n.nomCouleur}
+                                            {n.nom}
                                             </TableCell>
 
                                             <TableCell>
-                                                <IconButton className={classes.buttonDelete} aria-label="Edit" component={Link} to={`/edit-Color/${n.idColor}`}>
+                                                <IconButton className={classes.buttonDelete} aria-label="Edit" component={Link} to={`/edit-Color/${n.pk}`}>
                                                 <EditIcon />
                                                 </IconButton>
-                                                <IconButton className={classes.buttonEdit} aria-label="Delete" onClick={(event) => this.handleClick(event, n.idColor)}>
+                                                <IconButton className={classes.buttonEdit} aria-label="Delete" onClick={(event) => this.handleClick(event, n.pk)}>
                                                 <DeleteIcon /> 
                                                 </IconButton>
                                             </TableCell>
@@ -239,7 +252,6 @@ const mapStateToProps = (state) => {
   return {
     Color: state.Color,
     Modele: state.Modele.Modele
-
   };
 }
 const connectedColorPage = withRouter(connect(mapStateToProps, null, null, {

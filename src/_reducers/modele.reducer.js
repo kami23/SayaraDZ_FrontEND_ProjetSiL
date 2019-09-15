@@ -1,7 +1,7 @@
 const initialState = {
     Modele: [],
     pk: '',
-    ref: '',
+    nom: '',
     code: '',
 };
 export function Modele(state = initialState, action) {
@@ -11,22 +11,20 @@ export function Modele(state = initialState, action) {
             return {
                 ...state,
                 Modele: action.Modele
-
             };
         case 'Modele_DETAIL':
             console.log("reducer" + action.nom)
             return {
                 ...state,
-
                 pk: action.pk,
-                ref: action.ref,
+                nom: action.nom,
                 code: action.code,
             };
         case 'Modele_CREATED':
             return {
                 ...state,
                 pk: action.pk,
-                ref: action.ref,
+                nom: action.nom,
                 code: action.code,
             };
         case "USER_UPDATED":

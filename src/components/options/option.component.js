@@ -154,10 +154,21 @@ console.log("chips"+chipColors);
                                     <TableHead>
                                         <TableRow>
 
-                                            <TableCell>Code Option</TableCell>
-                                            <TableCell>Nom Optione</TableCell>
-
-                                            <TableCell>Action</TableCell>
+                                            <TableCell>
+                                            <Typography variant="h6">
+                                            Code Option
+                                            </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                            <Typography variant="h6">
+                                            Nom Option
+                                            </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                            <Typography variant="h6">
+                                            Action
+                                            </Typography>
+                                            </TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -165,12 +176,11 @@ console.log("chips"+chipColors);
                                             return (
                                                 <TableRow key={n.pk}>
                                                     <TableCell component="th" scope="row">
-                                                        {n.codeOption}
+                                                        {n.code}
                                                     </TableCell>
                                                     <TableCell component="th" scope="row">
-                                                        {n.nomOption}
+                                                        {n.nom}
                                                     </TableCell>
-                                               
                                                     <TableCell>
                                                         <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Option/${n.pk}`}>
                                                             <EditIcon />
@@ -204,9 +214,10 @@ console.log("chips"+chipColors);
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
                                 Annuler
-                    </Button>
+                            </Button>
                             <Button onClick={this.handleClick} color="primary" autoFocus>
-                                Confirmer            </Button>
+                                Confirmer 
+                            </Button>
                         </DialogActions>
                     </Dialog>
                 </div>

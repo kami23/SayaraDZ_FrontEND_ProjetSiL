@@ -6,7 +6,9 @@ export const OptionAction = {
     deleteOptionById,
     getOptionById,
     editOptionInfo,
-    onChangeProps
+    onChangeProps,
+    getOptionsbyModeleId,
+    changeOptionsistModele
 };
 function getOptions(){
     return dispatch => {
@@ -83,6 +85,22 @@ export function handleOnChangeProps(props, value){
         type: "HANDLE_ON_CHANGE_Option",
         props: props,
         value: value
+    }
+}
+
+export function getOptionsbyModeleId(id){
+    return dispatch => {
+        OptionService.getOptionsbyModeleId(id)
+        .then((response)=>{
+          dispatch(changeOptionsistModele(response.data));
+        })
+    };
+}
+
+export function changeOptionsistModele(Options){
+    return{
+        type: "FETECHED_Options_per_Modele",
+        Option: Option
     }
 }
 

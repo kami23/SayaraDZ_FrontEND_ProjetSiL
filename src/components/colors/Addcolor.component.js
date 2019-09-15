@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { ModeleAction } from '../../_actions';
+import { ModeleAction,ColorAction } from '../../_actions';
 import { withRouter,Link } from 'react-router-dom';
 const drawerWidth = 240;
 const styles = theme => ({
@@ -65,14 +65,14 @@ const styles = theme => ({
 class AddColor extends Component {
     handleChange = prop => event => {
         const { dispatch } = this.props;
-        dispatch(ModeleAction.onChangeProps(prop, event));
+        dispatch(ColorAction.onChangeProps(prop, event));
     };
     componentDidMount() {
         const { match : { params } } = this.props;
         
         if(params.id){
             const { dispatch } = this.props;
-            dispatch(ModeleAction.getModeleById(params.id));
+            dispatch(ColorAction.getColorById(params.id));
         }
     }
     handleClick(event){
@@ -84,9 +84,9 @@ class AddColor extends Component {
             idModele:12222,
         }
         if(params.id){
-            dispatch(ModeleAction.editModeleInfo(params.id, payload));
+            dispatch(ColorAction.editColorInfo(params.id, payload));
         }else{
-            dispatch(ModeleAction.createModele(payload));
+            dispatch(ColorAction.createColor(payload));
         }
     }
     render() {
@@ -105,8 +105,7 @@ class AddColor extends Component {
             }
             return <InsertText />;
         }
-        const  nomModele  = this.props.nomModele;
-
+    
         return (
             
             <div className={classes.root}>
@@ -130,14 +129,25 @@ class AddColor extends Component {
                                 <Grid container spacing={24}>
                                 <Grid item xs={3}>
                                     <TextField
-                                    id="nomModele"
-                                    label="Name"
+                                    id="nom"
+                                    label="Nom"
                                     className={classes.textField}
-                                    value={nomModele}
-                                margin="normal"
-                                onChange = {this.handleChange('nomModele')}
+                                    value={this.props.nom}
+                                    margin="normal"
+                                    onChange = {this.handleChange('nom')}
                                     >
                                     </TextField>
+
+                                    <TextField
+                                    id="code"
+                                    label="code"
+                                    className={classes.textField}
+                                    value={this.props.code}
+                                    margin="normal"
+                                    onChange = {this.handleChange('code')}
+                                    >
+                                    </TextField>
+                                    
                                 </Grid>
                                 
                                 </Grid>
@@ -173,8 +183,9 @@ AddColor.propTypes = {
 const mapStateToProps = (state) =>{
     console.log("nameModele")
     return {           
-        idModele : state.Modele.idModele,
-        nomModele:state.Modele.nomModele
+        pk : state.Color.pk,
+        code:state.Color.code,
+        nom:state.Color.nom,
     }
 }
 

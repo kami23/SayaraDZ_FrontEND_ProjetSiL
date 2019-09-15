@@ -22,7 +22,7 @@
     <Grid container>
         <Grid item xs={2}>
             <Paper className="paper" >
-    <SideBar>
+        <SideBar>
         </SideBar>       
         </Paper>
             </Grid>

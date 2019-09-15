@@ -8,7 +8,8 @@ export const ModeleService = {
     getModelebyId
 };
 function get(apiEndpoint) {
-    return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/modele')
+    return axios.get('https://sayaradz-ee-backend.herokuapp.com/api/modele',
+    { headers: { "Authorization": 'Token '+JSON.parse(localStorage.getItem('user')).key } })
         .then((response) => {
             return response;
         }).catch((err) => {
@@ -17,7 +18,8 @@ function get(apiEndpoint) {
 }
 
 function post(payload) {
-    return axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/modele/create`, payload)
+    return axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/modele/create/`, payload, 
+    { headers: { "Authorization":'Token '+JSON.parse(localStorage.getItem('user')).key  }})
         .then((response) => {
             return response;
         }).catch((err) => {
@@ -27,7 +29,8 @@ function post(payload) {
 
 function getModelebyId(apiEndpoint) {
   //  return axios.get(`https://sayaradz-ee-backend.herokuapp.com/api/modele?idModele=` + apiEndpoint, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
-    return axios.get(`https://sayaradz-ee-backend.herokuapp.com/api/modele/detail/` + apiEndpoint +`/`)
+    return axios.get(`https://sayaradz-ee-backend.herokuapp.com/api/modele/detail/` + apiEndpoint +`/`,
+    { headers: { "Authorization": 'Token '+JSON.parse(localStorage.getItem('user')).key } })
   
     .then((response) => {
             return response;
@@ -40,7 +43,8 @@ function getModelebyId(apiEndpoint) {
 
 function put(id, payload) {
     
-    return axios.put('https://sayaradz-ee-backend.herokuapp.com/api/modele/update/'+id, payload)
+    return axios.put('https://sayaradz-ee-backend.herokuapp.com/api/modele/update/'+id, payload,
+    { headers: { "Authorization": 'Token '+JSON.parse(localStorage.getItem('user')).key } })
         .then((response) => {
             return response;
         }).catch((err) => {
@@ -50,7 +54,8 @@ function put(id, payload) {
 
 function deleteDetail(id) {
   //  return axios.delete(`https://sayaradz-ee-backend.herokuapp.com/api/modele/delete/` + id, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
-    return axios.delete(`https://sayaradz-ee-backend.herokuapp.com/api/modele/delete/` + id)
+    return axios.delete(`https://sayaradz-ee-backend.herokuapp.com/api/modele/delete/` + id,
+    { headers: { "Authorization": 'Token '+JSON.parse(localStorage.getItem('user')).key } })
  
     .then((response) => {
             return response;

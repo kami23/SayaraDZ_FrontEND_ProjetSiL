@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom'
 import user from '../../assets/icons/user.png'
@@ -7,7 +7,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Grid from '@material-ui/core/Grid';
-
+import LogOut from '../logout/LogOut';
 import {
     AppBar, CssBaseline,
     Divider, Drawer, Hidden, Toolbar, Typography,
@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import Menu from '@material-ui/core/Menu';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -180,7 +180,7 @@ const styles = theme => ({
     },
     userName: {
         marginTop:'5px',
-        marginLeft:'80px',
+        marginLeft:'15px',
         align: 'center'
     },
     title: {
@@ -199,7 +199,33 @@ const styles = theme => ({
 });
 
 
+const anchorEl= false;
+const mobileMoreAnchorEl=false;
+const menuId = 'primary-search-account-menu';
+
+function   handleMenuClose() {
+   anchorEl=false;
+  }
+
+const isMenuOpen = anchorEl;
+const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem >Profile</MenuItem>
+      <MenuItem >My account</MenuItem>
+    </Menu>
+  );
+
 class SideBar extends React.Component {
+
+    
     componentDidMount() {
 
     }
@@ -231,6 +257,10 @@ class SideBar extends React.Component {
         this.setState(state => ({ open: !state.open }));
     };
 
+    handleProfileMenuOpen(event) {
+        anchorEl=true;
+      }
+    
 
     render() {
         const { classes, theme } = this.props;
@@ -255,7 +285,7 @@ class SideBar extends React.Component {
                     <img className={classes.img} alt="user" src={user} />
                 </div>
                 <div className={classes.userName}>
-                    <h4> Fabricant </h4>
+                    <h4> </h4>
                 </div>
                 <MenuList className={classes.menu}>
                     <MenuItem component={Link} to="/Acceuil"
@@ -385,14 +415,10 @@ class SideBar extends React.Component {
                   >
                     <AccountCircle />
                   </IconButton>
-                </div>
+
+{renderMenu}                 </div>
                  </Grid>
                
-                <div className={classes.sectionMobile}>
-                  <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                    <MoreIcon />
-                  </IconButton>
-                </div>
                 </Toolbar>
                 
                 </AppBar>

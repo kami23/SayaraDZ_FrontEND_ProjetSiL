@@ -1,24 +1,13 @@
 import React, { Fragment } from 'react';
-//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import "./LoginPage.css";
 import { userActions } from '../../_actions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-//import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
-//import Input from '@material-ui/core/Input';
-//import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-//import loginImage from '../../assets/img-01.png'
-
-//import PropTypes from 'prop-types';
-//import Tabs from '@material-ui/core/Tabs';
-//import Tab from '@material-ui/core/Tab';
-//import Typography from '@material-ui/core/Typography';
-
 
 
   
@@ -36,6 +25,7 @@ class LoginPage extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClickAdmin=this.handleClickAdmin.bind(this);
     } 
 
     handleChange(e) {
@@ -56,6 +46,10 @@ class LoginPage extends React.Component {
         if (username && password) {
             dispatch(userActions.login(username, password));
         }
+    }
+
+    handleClickAdmin(){
+        this.props.history.push('/admin')
     }
 
     
@@ -79,7 +73,7 @@ class LoginPage extends React.Component {
 <form name="form" onSubmit={this.handleSubmit} className="formLogin">
   
     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
-        <h3>Connecter comme un utilisateur fabricant </h3>
+        <h3>Connexion utilisateur fabricant </h3>
 
 <TextField
 required
@@ -124,11 +118,10 @@ onClick={this.handleClickShowPassword}
 />
 </div>
 <div className="form-group">
-Mot de passe oublié ? Contacter l'administrateur
   <Button id="buttonSubmit"  variant="contained" color="primary" type="submit" className="btn btn-primary">Connecter</Button>
   {loggingIn}
-  
 </div>
+<Button onClick={this.handleClickAdmin}> Connexion Administrateur </Button>
 </form>
 
 

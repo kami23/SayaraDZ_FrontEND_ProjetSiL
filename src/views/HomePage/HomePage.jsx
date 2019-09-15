@@ -1,6 +1,6 @@
     import React , { Fragment }from 'react';
     import { connect } from 'react-redux';
-    //import LogOut from '../../components/logout/LogOut';
+    import LogOut from '../../components/logout/LogOut';
     //import NavBar from '../../components/navbar/NavBar';
     import "./HomePage.css"
     //import {LoginPage }from '../LoginPage/LoginPage.jsx';
@@ -22,7 +22,7 @@
     <Grid container>
         <Grid item xs={2}>
             <Paper className="paper" >
-    <SideBar>
+         <SideBar>
         </SideBar>       
         </Paper>
             </Grid>

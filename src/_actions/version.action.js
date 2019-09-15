@@ -95,11 +95,12 @@ function getVersionById(id){
 }
 
 export function editVersionDetails(Version){
+    console.log("im here at version action editvers ",Version);
     return{
         type: "Version_DETAIL",
-        idVersion:Version[0].pk,
-        nomVersion:Version[0].nom,
-        codeVersion : Version[0].code,
+        pk:Version[0].pk,
+        nom:Version[0].nom,
+        code: Version[0].code,
         options:Version[0].options,
     }
 }

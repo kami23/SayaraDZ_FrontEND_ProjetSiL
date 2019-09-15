@@ -100,24 +100,20 @@ class AddModele extends Component {
     }
     
     handleClick(event) {
-       // const { match: { params } } = this.props;
+     const { match: { params } } = this.props;
         const { dispatch } = this.props;
         let payload = {
-            ref: 36,
-            code: "123",
-            image:"image..."
+            new_ref: this.props.nom,
+            code: this.props.code
         }
-        console.log(payload)
-
-
-        dispatch(ModeleAction.createModele(payload));
-
-       /* if (params.id) {
+       if (params.id) {
+        
             dispatch(ModeleAction.editModeleInfo(params.id, payload));
         } else {
-            console.log(payload)
             dispatch(ModeleAction.createModele(payload));
-        }*/
+        }
+
+        this.props.history.push('/modeles');
     }
     render() {
         const { classes } = this.props;
@@ -136,7 +132,7 @@ class AddModele extends Component {
             return <InsertText />;
         }
         
-        const ref = this.props.ref;
+        const pk = this.props.pk;
         return (
 
             <div className={classes.root}>
@@ -161,7 +157,7 @@ class AddModele extends Component {
                                                 <Grid item xs={3}>
                                                     <TextField
                                                         id="code"
-                                                        label="Code Modele"
+                                                        label="Code Modèle"
                                                         className={classes.textField}
                                                         value={this.props.code}
                                                         margin="normal"
@@ -169,19 +165,15 @@ class AddModele extends Component {
                                                     >
                                                     </TextField>
                                                     <TextField
-                                                        id="ref"
-                                                        label="Name"
+                                                        id="nom"
+                                                        label="Nom Modèle"
                                                         className={classes.textField}
-                                                        value={ref}
+                                                        value={this.props.nom}
                                                         margin="normal"
-                                                        onChange={this.handleChange('ref')}
+                                                        onChange={this.handleChange('nom')}
                                                     >
                                                     </TextField>
-                                                    <br /><br /><br />
-                                                    <label> Couleurs Compatibles</label>
-                                                    <br /><br />
-                                                    <br/>
-
+                                                
                                                 </Grid>
 
                                             </Grid>
@@ -225,7 +217,7 @@ const mapStateToProps = (state) => {
 
     return {
         pk: state.Modele.pk,
-        ref: state.Modele.ref,
+        nom: state.Modele.nom,
         code: state.Modele.code,
     }
 }

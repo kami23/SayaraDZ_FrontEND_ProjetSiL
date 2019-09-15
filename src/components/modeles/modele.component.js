@@ -95,6 +95,7 @@ class Modele extends Component {
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch(ModeleAction.getModele());
+        
     }
     handleChange = event => {
         this.setState({
@@ -120,6 +121,7 @@ class Modele extends Component {
     render() {
         const { classes } = this.props;
         const { Modele } = this.props.Modele;
+        
         return (
             <div className={classes.root}>
                 <div className={classes.appFrame}>
@@ -186,7 +188,7 @@ class Modele extends Component {
                                                         {n.code}
                                                     </TableCell>
                                                     <TableCell component="th" scope="row">
-                                                        {n.ref}
+                                                        {n.nom}
                                                     </TableCell>
                                                     <TableCell>
                                                         <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Modele/${n.pk}`}>
@@ -242,7 +244,7 @@ Modele.propTypes = {
 };
 const mapStateToProps = (state) => {
     return {
-        Modele: state.Modele
+        Modele: state.Modele,
     };
 }
 const connectedModelePage = withRouter(connect(mapStateToProps, null, null, {

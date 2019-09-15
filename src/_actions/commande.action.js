@@ -10,7 +10,7 @@ export const CommandeAction = {
 };
 function getCommande(){
     return dispatch => {
-        CommandeService.get()
+        CommandeService.getCommandes()
         .then((response)=>{
             dispatch(changeCommandesList(response.data));
         }).catch((err)=>{
@@ -28,8 +28,7 @@ export function changeCommandesList(Commande){
 
 function createCommande(payload){
     return dispatch => {
-       
-        CommandeService.post(payload)
+       CommandeService.post(payload)
         .then((response)=>{
             dispatch(createUserInfo());
             history.push('/Commandes');
@@ -50,8 +49,8 @@ function getCommandeById(id){
 export function editCommandeDetails(Commande){
     return{
         type: "Commande_DETAIL",
-        pk:Commande.pk,
-        ref:Commande.ref,
+        id:Commande.id,
+        nom:Commande.nom,
         code:Commande.code,
     }
 }
@@ -64,7 +63,7 @@ function editCommandeInfo(id, payload){
     return dispatch => {
         CommandeService.put(id, payload)
         .then((response)=>{
-            dispatch(updatedUserInfo());
+            dispatch(updateCommandeInfo());
             history.push('/Commandes');
         })
     }
@@ -88,9 +87,9 @@ export function handleOnChangeProps(props, value){
     }
 }
 
-export function updatedUserInfo(){
+export function updateCommandeInfo(){
     return{
-        type: "USER_UPDATED"
+        type: "Commande_UPDATED"
     }
 }
 export function createUserInfo(){

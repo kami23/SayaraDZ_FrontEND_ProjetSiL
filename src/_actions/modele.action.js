@@ -28,8 +28,7 @@
     
     function createModele(payload){
         return dispatch => {
-           
-            ModeleService.post(payload)
+           ModeleService.post(payload)
             .then((response)=>{
                 dispatch(createUserInfo());
                 history.push('/modeles');
@@ -51,7 +50,7 @@
         return{
             type: "Modele_DETAIL",
             pk:Modele.pk,
-            ref:Modele.ref,
+            nom:Modele.nom,
             code:Modele.code,
         }
     }
@@ -65,7 +64,6 @@
             ModeleService.put(id, payload)
             .then((response)=>{
                 dispatch(updatedUserInfo());
-                history.push('/modeles');
             })
         }
     }

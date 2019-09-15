@@ -18,3 +18,16 @@ function error(message) {
 function clear() {
     return { type: alertConstants.CLEAR };
 }
+
+const initialState = null
+
+export function Page1Reducer (state = initialState, action) {
+  switch (action.type) {
+    case 'PAGE1_RESET_PAGE': {
+      state = initialState
+      break
+    }
+
+    // ...
+  }
+}

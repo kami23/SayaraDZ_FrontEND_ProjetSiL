@@ -1,9 +1,10 @@
 const initialState = { 
     Versions: [],
-    idVersion:'',
-    nomVersion:'',
-    codeVersion:'',
-    modeleVersion:'',
+    pk:'',
+    nom:'',
+    code:'',
+    modele:'',
+    prix:0,
     options:[]
 };
 export function Version(state = initialState, action) {
@@ -24,10 +25,11 @@ export function Version(state = initialState, action) {
             case 'Version_DETAIL':
                         return {
                             ...state,
-                            nomVersion: action.nomversion,
-                            codeVersion: action.codeVersion,
-                            modeleVersion: action.modeleVersion,
-                            idVersion: action.idVersion,
+                            nom: action.nom,
+                            code: action.code,
+                            modele: action.modele,
+                            pk: action.pk,
+                            prix:action.prix,
                             options: action.options
                        
                         };

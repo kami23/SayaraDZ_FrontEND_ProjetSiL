@@ -24,6 +24,12 @@ export function Option(state = initialState, action) {
                 ...state,
                 [action.props]: action.value
             };
+            case "FETECHED_Options_per_Modele":
+            return {
+                ...state,
+                Option: action.Option
+            };
+       
 
         default:
             return state

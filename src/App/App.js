@@ -3,7 +3,7 @@ import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
-import { PrivateRoute,PublicRoute } from '../_util';
+import { PrivateRoute,PublicRoute,PrivateRoute2 } from '../_util';
 import { HomePage } from '../views/HomePage';
 import { AdminPage } from '../views/AdminPage/AdminPage';
 //import { Modele } from '../components/modeles/mod'
@@ -30,10 +30,12 @@ class App extends React.Component {
                 }
                 <Router history={history}>
                     <div>
-                    <PublicRoute restricted={true} exact path="/admin" component={AdminPage} />
-
-                        <PrivateRoute exact path="/" component={HomePage} />
-                     
+                       <PrivateRoute exact path="/" component={HomePage} />
+                       <Route path='/admin' component={() => { 
+     window.location.href = 'https://sayaradz-ee-backend.herokuapp.com/admin/'; 
+     return null;
+}}/>
+   
                         <div style={{backgroundImage:'/assets/bg12.svg'}}>
                         <Route path="/login" component={LoginPage} />
                         </div>

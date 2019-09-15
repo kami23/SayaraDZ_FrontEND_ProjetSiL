@@ -25,8 +25,6 @@ import InputBase from '@material-ui/core/InputBase';
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import Chip from '@material-ui/core/Chip';
 import {MultipleSelect} from '../../components/simuler/dropdownlist/dropdownlist.component';
-import CloseIcon from '@material-ui/icons/Close';
-import DoneIcon from '@material-ui/icons/Done';
 
 const drawerWidth = 240;
 const styles = theme => ({
@@ -94,9 +92,35 @@ class Commande extends Component {
         idCommande: ''
     };
 
-  
+    componentDidMount() {
+        const { dispatch } = this.props;
+        dispatch(CommandeAction.getCommande());
+        
+    }
+    handleChange = event => {
+        this.setState({
+            anchor: event.target.value,
+        });
+    };
+
+    handleClickOpen = (event, id) => {
+        const { dispatch } = this.props;
+        this.setState({ open: true, idCommande: id })
+        //   dispatch(CommandeAction.deleteCommandeById(id))
+    };
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
+    handleClick = (event) => {
+        const { dispatch } = this.props;
+        dispatch(CommandeAction.deleteCommandeById(this.state.idCommande))
+        this.handleClose();
+    };
     render() {
         const { classes } = this.props;
+        const { Commande } = this.props.Commande;
+        
         return (
             <div className={classes.root}>
                 <div className={classes.appFrame}>
@@ -145,48 +169,47 @@ class Commande extends Component {
                                             </TableCell>
                                             <TableCell>
                                                 <Typography variant="h6" noWrap>
-                                                    Client 
-                                                </Typography>
-                                            </TableCell>
-                                            
-                                            <TableCell>
-                                                <Typography variant="h6" noWrap>
-                                                    date 
+                                                    Nom client
                                                 </Typography>
                                             </TableCell>
                                             <TableCell>
                                                 <Typography variant="h6" noWrap>
-                                                    Information vhécule 
+                                                    Véhicule
+                                                </Typography>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Typography variant="h6" noWrap>
+                                                    Action 
                                                 </Typography> 
                                             </TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                      
-                                                <TableRow>
+                                        {Commande.map(n => {
+                                            return (
+                                                <TableRow key={n.pk}>
                                                     <TableCell component="th" scope="row">
-                                                       1234
+                                                        {n.id}
                                                     </TableCell>
                                                     <TableCell component="th" scope="row">
-                                                       KAMI
+                                                        {n.client}
                                                     </TableCell>
+
                                                     <TableCell component="th" scope="row">
-                                                     12/02/2019    
-                                                
-                                                                                                        </TableCell>
-                                                    <TableCell component="th" scope="row">
-                                                      Informations
+                                                        {n.voiture}
                                                     </TableCell>
                                                     
                                                     <TableCell>
-                                                        <IconButton className={classes.buttonEdit} aria-label="Edit">
-                                                            <CloseIcon />
+                                                        <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Commande/${n.pk}`}>
+                                                            <EditIcon />
                                                         </IconButton>
-                                                        <IconButton className={classes.buttonDelete} aria-label="Delete" >
-                                                            <DoneIcon />
+                                                        <IconButton className={classes.buttonDelete} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.pk)}>
+                                                            <DeleteIcon />
                                                         </IconButton>
                                                     </TableCell>
                                                 </TableRow>
+                                            );
+                                        })}
                                     </TableBody>
                                 </Table>
                             </Paper>
@@ -230,7 +253,7 @@ Commande.propTypes = {
 };
 const mapStateToProps = (state) => {
     return {
-        Commande: state.Commande
+        Commande: state.Commande,
     };
 }
 const connectedCommandePage = withRouter(connect(mapStateToProps, null, null, {

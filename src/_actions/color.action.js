@@ -6,6 +6,7 @@ export const ColorAction = {
     deleteColorById,
     getColorById,
     editColorInfo,
+    getColorbyModeleId,
     onChangeProps
 };
 function getColors(){
@@ -49,8 +50,25 @@ function getColorById(id){
 export function editColorDetails(Color){
     return{
         type: "Color_DETAIL",
-        codeColor:Color[0].codeColor,
-        nomColor:Color[0].nomColor
+        code:Color.code,
+        nom:Color.nom,
+        modele:Color.modele,
+        prix:Color.prix
+    }
+}
+
+export function getColorbyModeleId(id){
+    return dispatch => {
+        ColorService.getColorbyModeleId(id)
+        .then((response)=>{
+          dispatch(changeColorsListModele(response.data));
+        })
+    };
+}
+export function changeColorsListModele(Colors){
+    return{
+        type: "FETECHED_Colors_per_Modele",
+        Color: Colors
     }
 }
 function onChangeProps(props, event){

@@ -98,16 +98,6 @@ const styles = theme => ({
 
 class Version extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      age: '',
-      value: '',
-      text:''
-    }
-    this.handleChange = this.handleChange.bind(this);
-
-  }
   props = {
     label: '',
     elements: [],
@@ -117,6 +107,18 @@ class Version extends React.Component {
   i:0,
     labelWidth: 0,
   };
+
+  constructor(props){
+    super(props);
+    this.state = {
+      age: '',
+      value: '',
+      text:'',
+      selectedFile:''
+    }
+    this.handleChange = this.handleChange.bind(this);
+
+  }
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -131,13 +133,20 @@ class Version extends React.Component {
 
     this.setState({ value: event.target.value }  );
    dispatch(VersionAction.getVersions(event.target.value))    
-  
-
-  
 
 console.log("value",this.state.value)
 
   };
+
+
+  fileChangedHandler = event => {
+    this.setState({ selectedFile: event.target.files[0] })
+  }
+
+  uploadHandler = () => {
+    console.log(this.state.selectedFile)
+  }
+
   tarifs = ["1000000 da ","1600000 da " , "2100000 da"]
   i=0;
   render() {
@@ -193,6 +202,11 @@ console.log("value",this.state.value)
                             <Grid item xs={3}>
                             </Grid>
                             <Grid item xs={6}>
+                            <input type="file" onChange={this.fileChangedHandler}>
+                            </input>
+
+<button onClick={this.uploadHandler}>Upload!</button>
+
                             </Grid>
                             <Grid item xs={3} container justify="flex-end">
                                 <Button variant="contained" className={classes.buttonAdd} 
@@ -229,20 +243,16 @@ console.log("value",this.state.value)
                                             <TableCell component="th" scope="row">
                                             {n.nom}
                                             </TableCell>
-
-                                            <TableCell component="th" scope="row">
-                                            {n.modele_name}
-                                            </TableCell>
                                             
                                             <TableCell component="th" scope="row">
-                                            {this.tarifs[this.i++]}
+                                            {n.prix}
                                             </TableCell>
                                          
                                             <TableCell>
-                                                <IconButton className={classes.buttonEdit} aria-label="Modifier" component={Link} to={`/edit-version/${n.idVersion}`}>
+                                                <IconButton className={classes.buttonEdit} aria-label="Modifier" component={Link} to={`/edit-version/${n.code}/${this.state.value}`}>
                                                 <EditIcon/>
                                                 </IconButton>
-                                                <IconButton className={classes.buttonDelete} aria-label="Supprimer" onClick={(event) => this.handleClick(event, n.idVersion)}>
+                                                <IconButton className={classes.buttonDelete} aria-label="Supprimer" onClick={(event) => this.handleClick(event, n.code)}>
                                                 <DeleteIcon/> 
                                                 </IconButton>
                                             </TableCell>

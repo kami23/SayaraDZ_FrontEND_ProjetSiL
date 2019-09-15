@@ -10,7 +10,7 @@ import { AddOption } from '../components/options/AddOption.component'
 import { Option } from '../components/options/option.component'
 import { Color } from '../components/colors/color.component'
 import { AddColor } from '../components/colors/Addcolor.component'
-import {Commande} from '../components/commande/commande.component2'
+import {Commande} from '../components/commande/commande.component'
 import {Fichier} from '../components/acceuil/fichier.component'
 import {MultipleSelect} from '../components/simuler/dropdownlist/dropdownlist.component';
 
@@ -23,21 +23,20 @@ const routes = (
     
     <Route exact path='/versions' component={Version} />
     <Route exact path='/add-version' component={AddVersion} />
-    <Route exact path='/edit-version/:id' component={AddVersion} />
+    <Route exact path='/edit-version/:id/:value' component={AddVersion} />
 
     <Route exact path='/options' component={Option} />
     <Route exact path='/add-option' component={AddOption} />
-    <Route exact path='/edit-option/:id' component={AddOption} />
+    <Route exact path='/edit-option/:id/:value' component={AddOption} />
 
     <Route exact path='/colors' component={Color} />
     <Route exact path='/add-color' component={AddColor} />
-    <Route exact path='/edit-color/:id' component={AddColor} />
+    <Route exact path='/edit-color/:id/:value' component={AddColor} />
      
     <Route exact path='/commandes' component={Commande} />
-    
-
     <Route exact path='/Simuler' component={MultipleSelect} />
 
+   
 
   </Switch>
 );
