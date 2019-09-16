@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { OptionAction } from '../../_actions';
+import { CommandeAction } from '../../_actions';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -21,7 +21,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-//import Chip from '@material-ui/core/Chip';
+import InputBase from '@material-ui/core/InputBase';
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import Chip from '@material-ui/core/Chip';
+import {MultipleSelect} from '../../components/simuler/dropdownlist/dropdownlist.component';
 
 const drawerWidth = 240;
 const styles = theme => ({
@@ -64,32 +67,35 @@ const styles = theme => ({
     table: {
         minWidth: 700,
     },
-    buttonEdit:{
-        color:'#6bd098',
+    buttonEdit: {
+        color: '#6bd098',
     },
-    buttonDelete:{
-        color:'#6bd098'
+    buttonDelete: {
+        color: '#6bd098'
     },
-    buttonAdd:{
-        fontStyle:"Bold",
-        backgroundColor:'#51bcda',
-        "&:hover":{
-            width:'200px',
-            color:'white',
-            backgroundColor:'#6bd098',
+    buttonAdd: {
+        fontStyle: "Bold",
+        backgroundColor: '#51bcda',
+        "&:hover": {
+            width: '200px',
+            color: 'white',
+            backgroundColor: '#6bd098',
         }
     }
+
+
 });
-const chipColors=[];
-class Option extends Component {
+
+class Commande extends Component {
     state = {
         open: false,
-        idOption: ''
+        idCommande: ''
     };
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(OptionAction.getOptions());        
+        dispatch(CommandeAction.getCommande());
+        
     }
     handleChange = event => {
         this.setState({
@@ -97,16 +103,11 @@ class Option extends Component {
         });
     };
 
-    handleDelete=(color)=>{
-        const chipToDelete = chipColors.indexOf(color);
-        chipColors.splice(chipToDelete, 1);
-console.log("chips"+chipColors);
-    }
 
     handleClickOpen = (event, id) => {
-     //   const { dispatch } = this.props;
-        this.setState({ open: true, idOption: id })
-        //   dispatch(ModeleAction.deleteModeleById(id))
+        const { dispatch } = this.props;
+        this.setState({ open: true, idCommande: id })
+        //   dispatch(CommandeAction.deleteCommandeById(id))
     };
     handleClose = () => {
         this.setState({ open: false });
@@ -114,23 +115,23 @@ console.log("chips"+chipColors);
 
     handleClick = (event) => {
         const { dispatch } = this.props;
-        dispatch(OptionAction.deleteOptionById(this.state.idOption))
+        dispatch(CommandeAction.deleteCommandeById(this.state.idCommande))
         this.handleClose();
     };
     render() {
         const { classes } = this.props;
-        const { Option } = this.props.Option;
+        const { Commande } = this.props.Commande;
         return (
             <div className={classes.root}>
-
                 <div className={classes.appFrame}>
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
+                        
                         <Grid container spacing={24}>
                             <Grid item xs={3}>
-                            <Typography variant="h6" color="inherit" noWrap>
-                            Gestion des Options
-                            </Typography>                        
+                                <Typography variant="h6" color="inherit" noWrap>
+                                    Gestion des Commandes
+                                </Typography>
                             </Grid>
                             <Grid item xs={6}>
                             </Grid>
@@ -139,53 +140,61 @@ console.log("chips"+chipColors);
                         </Grid>
                         <Grid container spacing={24}>
                             <Grid item xs={3}>
+                                <Paper>
+                                    <InputBase
+                                        placeholder="Search…"
+                                        inputProps={{ 'aria-label': 'Search' }} />
+                                </Paper>
+
                             </Grid>
                             <Grid item xs={6}>
                             </Grid>
                             <Grid item xs={3} container justify="flex-end">
                                 <Button variant="contained" color="primary" className={classes.buttonAdd}
-                                    component={Link} to={`/add-Option`}>Ajouter une Option</Button>
+                                    component={Link} to={`/add-Commande`}>Ajouter un Modèle</Button>
                             </Grid>
                         </Grid>
                         <br /><br />
                         <Grid container >
+
                             <Paper className={classes.root}>
-                                <Table>
+
+                                <Table size="small">
                                     <TableHead>
                                         <TableRow>
-
                                             <TableCell>
-                                            <Typography variant="h6">
-                                            Code Option
-                                            </Typography>
+                                                <Typography variant="h6" noWrap>
+                                                    Code Commande
+                                                </Typography>
                                             </TableCell>
                                             <TableCell>
-                                            <Typography variant="h6">
-                                            Nom Option
-                                            </Typography>
+                                                <Typography variant="h6" noWrap>
+                                                    Nom Commande 
+                                                </Typography>
                                             </TableCell>
                                             <TableCell>
-                                            <Typography variant="h6">
-                                            Action
-                                            </Typography>
+                                                <Typography variant="h6" noWrap>
+                                                    Action 
+                                                </Typography> 
                                             </TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {Option.map(n => {
+                                         {console.log(Commande)}
+                                        {Commande.map(n => {
                                             return (
-                                                <TableRow key={n.code}>
+                                                <TableRow key={n.pk}>
                                                     <TableCell component="th" scope="row">
-                                                        {n.code}
+                                                        {n.id}
                                                     </TableCell>
                                                     <TableCell component="th" scope="row">
                                                         {n.nom}
                                                     </TableCell>
                                                     <TableCell>
-                                                        <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Option/${n.code}`}>
+                                                        <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Commande/${n.pk}`}>
                                                             <EditIcon />
                                                         </IconButton>
-                                                        <IconButton className={classes.buttonDelete} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.code)}>
+                                                        <IconButton className={classes.buttonDelete} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.pk)}>
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </TableCell>
@@ -198,25 +207,30 @@ console.log("chips"+chipColors);
                         </Grid>
                     </main>
                 </div>
-
                 <div>
 
                     <Dialog
                         open={this.state.open}
                         onClose={this.handleClose}
                         aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"  >
-                        <DialogTitle id="alert-dialog-title">{"Attention!"}</DialogTitle>
+                        aria-describedby="alert-dialog-description">
+
+                        <DialogTitle id="alert-dialog-title">
+                        {"Attention!"}
+                        </DialogTitle>
+
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description">
-                                Voulez-Vous vraiment supprimer ce modèle ? </DialogContentText>
+                                Voulez-Vous vraiment supprimer ce modèle ? 
+                            </DialogContentText>
                         </DialogContent>
+
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
                                 Annuler
                             </Button>
                             <Button onClick={this.handleClick} color="primary" autoFocus>
-                                Confirmer 
+                                Confirmer           
                             </Button>
                         </DialogActions>
                     </Dialog>
@@ -225,15 +239,15 @@ console.log("chips"+chipColors);
         );
     }
 }
-Option.propTypes = {
+Commande.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => {
     return {
-        Option: state.Option
+        Commande: state.Commande
     };
 }
-const connectedOptionPage = withRouter(connect(mapStateToProps, null, null, {
+const connectedCommandePage = withRouter(connect(mapStateToProps, null, null, {
     pure: false
-})(withStyles(styles)(Option)));
-export { connectedOptionPage as Option };
+})(withStyles(styles)(Commande)));
+export { connectedCommandePage as Commande };

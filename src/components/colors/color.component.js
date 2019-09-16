@@ -222,7 +222,7 @@ class Color extends React.Component {
                                             </TableCell>
 
                                             <TableCell>
-                                                <IconButton className={classes.buttonDelete} aria-label="Edit" component={Link} to={`/edit-Color/${n.pk}`}>
+                                                <IconButton className={classes.buttonDelete} aria-label="Edit" component={Link} to={`/edit-Color/${n.pk}/${this.state.value}`}>
                                                 <EditIcon />
                                                 </IconButton>
                                                 <IconButton className={classes.buttonEdit} aria-label="Delete" onClick={(event) => this.handleClick(event, n.pk)}>

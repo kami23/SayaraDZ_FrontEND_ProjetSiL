@@ -32,7 +32,7 @@ class App extends React.Component {
                     <div>
                        <PrivateRoute exact path="/" component={HomePage} />
                        <Route path='/admin' component={() => { 
-     window.location.href = 'https://sayaradz-ee-backend.herokuapp.com/admin/'; 
+         window.location.href = 'https://sayaradz-ee-backend.herokuapp.com/admin/'; 
      return null;
 }}/>
    

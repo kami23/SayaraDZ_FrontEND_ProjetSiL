@@ -78,8 +78,7 @@ function onChangeProps(props, event){
 }
 function editColorInfo(id, payload){
     return dispatch => {
-        ColorService.put(`https://sayaradz-ee-backend.herokuapp.com/api/Color?codeColor=`+id, payload)
-        .then((response)=>{
+        ColorService.put(id,payload).then((response)=>{
             dispatch(updatedColorInfo());
             history.push('/Colors');
         })

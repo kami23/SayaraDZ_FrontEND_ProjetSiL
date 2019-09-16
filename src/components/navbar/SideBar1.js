@@ -402,19 +402,7 @@ class SideBar extends React.Component {
                             <Grid item xs={3} container justify="flex-end">
                            
                     <div className={classes.sectionDesktop}>
-                  <IconButton color="inherit">
-                    <Badge badgeContent={17} color="secondary">
-                      <NotificationsIcon />
-                    </Badge>
-                  </IconButton>
-                  <IconButton
-                    aria-owns={'material-appbar'}
-                    aria-haspopup="true"
-                    onClick={this.handleProfileMenuOpen}
-                    color="inherit"
-                  >
-                    <AccountCircle />
-                  </IconButton>
+                
 
 {renderMenu}                 </div>
                  </Grid>

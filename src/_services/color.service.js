@@ -55,9 +55,8 @@ function getColorbyModeleId(apiEndpoint) {
 
 function put(apiEndpoint, payload) {
    // return axios.put(``, payload, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
-   return axios.put(``, payload)
-         
-   .then((response) => {
+   return axios.put(`https://sayaradz-ee-backend.herokuapp.com/api/update/pk=`+apiEndpoint, payload, { headers: { "Authorization": JSON.parse(localStorage.getItem('user')).key } })
+         .then((response) => {
             return response;
         }).catch((err) => {
             console.log(err);

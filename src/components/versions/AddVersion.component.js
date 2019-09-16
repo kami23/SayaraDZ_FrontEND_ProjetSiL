@@ -90,12 +90,11 @@ const styles = theme => ({
 
 const chipOptions =[]
 class AddVersion extends Component {
+
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            age: '',
             value: '',
-            text: ''
         }
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
 
@@ -202,22 +201,22 @@ class AddVersion extends Component {
                                         
                                                     <TextField
                                                         required
-                                                        id="nomVersion"
+                                                        id="nom"
                                                         label="Nom Version"
                                                         className={classes.textField}
                                                         value={this.props.nom}
                                                         margin="normal"
-                                                        onChange={this.handleChange('nomVersion')}
+                                                        onChange={this.handleChange('nom')}
                                                     >
                                                     </TextField>
 
                                                     <TextField
-                                                        id="codeVersion"
+                                                        id="code"
                                                         label="Code Version"
                                                         className={classes.textField}
                                                         value={this.props.code}
                                                         margin="normal"
-                                                        onChange={this.handleChange('codeVersion')}
+                                                        onChange={this.handleChange('code')}
                                                     >
                                                     </TextField>
 

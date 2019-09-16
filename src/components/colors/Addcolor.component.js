@@ -10,6 +10,10 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { ModeleAction,ColorAction } from '../../_actions';
 import { withRouter,Link } from 'react-router-dom';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 const drawerWidth = 240;
 const styles = theme => ({
     root: {
@@ -63,6 +67,14 @@ const styles = theme => ({
     }
 });
 class AddColor extends Component {
+
+    constructor(props){
+    super(props)
+    this.state = {
+        value: '',
+    }
+    
+    }
     handleChange = prop => event => {
         const { dispatch } = this.props;
         dispatch(ColorAction.onChangeProps(prop, event));
@@ -73,15 +85,16 @@ class AddColor extends Component {
         if(params.id){
             const { dispatch } = this.props;
             dispatch(ColorAction.getColorById(params.id));
+            dispatch(ModeleAction.getModele());
         }
     }
     handleClick(event){
         const { match : { params } } = this.props;
         const { dispatch } = this.props;
         let payload={
-            nomModele: this.props.nomModele,
-            marqueModele:JSON.parse(localStorage.getItem('user')).marqueid,
-            idModele:12222,
+            nom: this.props.nom,
+            code:this.props.code,
+            modele:this.state.value,
         }
         if(params.id){
             dispatch(ColorAction.editColorInfo(params.id, payload));
@@ -126,6 +139,27 @@ class AddColor extends Component {
                         <div>
                         <Paper className={classes.contentRoot} elevation={1}>
                             <form className={classes.container}>
+
+                              <FormControl required >
+                                                        <InputLabel htmlFor="Modele">Modele</InputLabel>
+                                                        <Select
+                                                            native
+                                                            value={this.state.value}
+                                                            onChange={this.handleChangeSelect}
+                                                            name="value"
+                                                            inputProps={{
+                                                                id: "Modele",
+                                                            }}
+                                                        >
+                                                            <option value="" />
+                                                            {this.props.Modele.map(element => {
+                                                                return (
+                                                                    <option value={element.pk}>{element.nom}</option>
+                                                                )
+                                                            })}
+
+                                                        </Select>
+                                                    </FormControl>
                                 <Grid container spacing={24}>
                                 <Grid item xs={3}>
                                     <TextField
@@ -186,6 +220,8 @@ const mapStateToProps = (state) =>{
         pk : state.Color.pk,
         code:state.Color.code,
         nom:state.Color.nom,
+        Modele: state.Modele.Modele
+
     }
 }
 

@@ -16,6 +16,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import axios from 'axios';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const names = [
   "Oliver Hansen",
@@ -147,7 +153,9 @@ class MultipleSelect extends React.Component {
  
   constructor(props) {
     super(props);
+  
     this.state = {
+      open: false,
       age: '',
       value: '',
       version: '',
@@ -162,9 +170,12 @@ class MultipleSelect extends React.Component {
       prixTotal:0,
       lastUpdate:0,
       affichPrix:false,
+      response:'',
+      color:'',
 
     }
     props = {
+      response:'',
       value: '',
       color:'',
       modele:'',
@@ -185,7 +196,9 @@ class MultipleSelect extends React.Component {
     this.handleChangeOption = this.handleChangeOption.bind(this);
     this.handleChange=this.handleChange.bind(this);
     this.handleClickSimulate=this.handleClickSimulate.bind(this);
-    this.handleVerifier=this.handleVerifer.bind(this);
+    this.handleVerifier=this.handleVerifier.bind(this);
+    this.handleClose=this.handleClose.bind(this);
+    this.handleClickOpen=this.handleClickOpen.bind(this);
   }
 
 
@@ -257,19 +270,31 @@ class MultipleSelect extends React.Component {
  }
  
   handleChange3 = event => {
-    this.setState(state => {
-      const name =state.name.add(event.target.value);
-      return {
-        name,
-      };
-    },this.addingPricOptions());  
-
+    this.setState({ name: event.target.value });
+    this.addingPricOptions()
+      
   };
 
   handleVerifier(){
-
+      this.setState({response: axios.get(`http://sayaradz-ee-backend.herokuapp.com/api/vehiculeneuf/?version=`+this.state.version+`&couleur=`+this.state.color, 
+      { headers: { "Authorization":'Token '+JSON.parse(localStorage.getItem('user')).key  }})
+          .then((response) => {
+              return response;
+          }).catch((err) => {
+              console.log(err);
+          })
+    },this.handleClickOpen())
   }
 
+    handleClose = () => {
+      this.setState({ open: false });
+  };
+
+  handleClickOpen = (event) => {
+    const { dispatch } = this.props;
+    this.setState({ open: true})
+    //   dispatch(ModeleAction.deleteModeleById(id))
+};
  
   render() {
     const { classes } = this.props;
@@ -282,10 +307,13 @@ class MultipleSelect extends React.Component {
             <Grid container spacing={24}>
                 <Grid item xs={3}>
                     <Typography variant="h6" color="inherit" noWrap>
-                        Simuler le Prix d'une véhicule
+                        Simuler le Prix d'un véhicule
                     </Typography>
                 </Grid>
                 <Grid item xs={6}>
+                <Typography variant="h6" color="inherit" noWrap>
+                        et verifier le stock 
+                    </Typography>
                 </Grid>
                 <Grid item xs={3} container justify="flex-end">
                 </Grid>
@@ -405,7 +433,7 @@ class MultipleSelect extends React.Component {
                 <div className={classes.title}>
 
                   <Typography variant="h5" color="inherit" noWrap>
-                    Prix totale : {this.state.prixTotal}
+                    Prix totale : {this.state.prixTotal} ,00 DA
                   </Typography> 
                 </div>
               </Paper>
@@ -414,10 +442,42 @@ class MultipleSelect extends React.Component {
             
             <Button className={classes.buttonSimulate} size="large" onClick={this.handleClickSimulate}> Simuler Prix </Button>
 
-            <Button className={classes.buttonVerifier} size="large" onClick={this.handleVerifer}> Vérifier Stock </Button>
+            <Button className={classes.buttonVerifier} size="large" onClick={this.handleVerifier}> Vérifier Stock </Button>
             
 
           </main>
+        </div>
+        <div> 
+        <Dialog
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description">
+
+                        <DialogTitle id="alert-dialog-title">
+                        {"Vérification de stock"}
+                        </DialogTitle>
+                        {this.state.response.data ? 
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+{ JSON.stringify(this.state.response.data)}                       
+     </DialogContentText>
+                        </DialogContent>
+                        :
+                        <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Il n'existe pas un véhicule avec ces caratéristiques
+                        </DialogContentText>
+                    </DialogContent>
+                        }
+
+                          <DialogActions>
+                            <Button onClick={this.handleClose} color="primary">
+                              Quitter
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+
         </div>
       </div>
     );

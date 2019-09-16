@@ -141,11 +141,7 @@ class Modele extends Component {
                         </Grid>
                         <Grid container spacing={24}>
                             <Grid item xs={3}>
-                                <Paper>
-                                    <InputBase
-                                        placeholder="Search…"
-                                        inputProps={{ 'aria-label': 'Search' }} />
-                                </Paper>
+                             
 
                             </Grid>
                             <Grid item xs={6}>
@@ -194,7 +190,7 @@ class Modele extends Component {
                                                         <IconButton className={classes.buttonEdit} aria-label="Edit" component={Link} to={`/edit-Modele/${n.pk}`}>
                                                             <EditIcon />
                                                         </IconButton>
-                                                        <IconButton className={classes.buttonDelete} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.pk)}>
+                                                        <IconButton className={classes.buttonDelete} aria-label="Delete" onClick={(event) => this.handleClickOpen(event, n.pk)} component={Link} to="/modeles">
                                                             <DeleteIcon />
                                                         </IconButton>
                                                     </TableCell>

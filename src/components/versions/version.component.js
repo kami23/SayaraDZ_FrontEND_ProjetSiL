@@ -202,11 +202,6 @@ console.log("value",this.state.value)
                             <Grid item xs={3}>
                             </Grid>
                             <Grid item xs={6}>
-                            <input type="file" onChange={this.fileChangedHandler}>
-                            </input>
-
-<button onClick={this.uploadHandler}>Upload!</button>
-
                             </Grid>
                             <Grid item xs={3} container justify="flex-end">
                                 <Button variant="contained" className={classes.buttonAdd} 

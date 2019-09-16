@@ -1,10 +1,7 @@
 import { connect } from 'react-redux';
-import { ModeleAction } from '../../_actions';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import Papa from 'papaparse';
 import axios from 'axios';
-import AlertDialogSlide,{handleClickOpen,handleClose} from './Dialog'
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter, Link } from 'react-router-dom';
 import { Input } from 'react-input-component';
@@ -16,13 +13,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import sayara from "../../images/sayaradz.png"
 
 const drawerWidth = 240;
 
@@ -274,7 +265,7 @@ class UploadCSV extends React.Component {
      var token = '7cb992a13c4cd110c521d482d54e9f9b9c56b2a7'
 
         axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/tarifoption/create/`, listOptions,
-        { headers: { "Authorization":'Token '+ token  }})
+        { headers: { "Authorization": 'Token '+JSON.parse(localStorage.getItem('user')).key } })
         .then((response) => {
           alert("Fichier envoyé")  
             return response;
@@ -285,7 +276,7 @@ class UploadCSV extends React.Component {
         })
 
         axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/tarifversion/create/`, listVersion,
-        { headers: { "Authorization":'Token '+ token  }})
+        { headers: { "Authorization": 'Token '+JSON.parse(localStorage.getItem('user')).key } })
         .then((response) => {
             return response;
         }).catch((err) => {
@@ -294,7 +285,7 @@ class UploadCSV extends React.Component {
         })
 
         axios.post(`https://sayaradz-ee-backend.herokuapp.com/api/tarifcouleur/create/`, listCouleur,
-        { headers: { "Authorization":'Token '+ token  }})
+        { headers: { "Authorization": 'Token '+JSON.parse(localStorage.getItem('user')).key } })
         .then((response) => {  
             return response;
         }).catch((err) => {
@@ -348,7 +339,7 @@ class UploadCSV extends React.Component {
 
       var token = '7cb992a13c4cd110c521d482d54e9f9b9c56b2a7'
       axios.post(` https://sayaradz-ee-backend.herokuapp.com/api/vehiculeneuf/create`, list
-   ,{ headers: { "Authorization":'Token '+ token  }})
+   , { headers: { "Authorization": 'Token '+ token } })
       .then((response) => {
         alert("Fichier envoyé")  
 
@@ -509,7 +500,6 @@ Le jeune homme conduisait une Agera RS du constructeur suédois Koenigsegg. Ce m
       );
     }
   }
-
   const connectedModelePage = withRouter(connect(null, null, null, {
     pure: false
 })(withStyles(styles)(UploadCSV)));

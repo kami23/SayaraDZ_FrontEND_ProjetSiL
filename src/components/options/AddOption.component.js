@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { ModeleAction } from '../../_actions';
+import { OptionAction,ModeleAction } from '../../_actions';
 import { withRouter,Link } from 'react-router-dom';
 const drawerWidth = 240;
 const styles = theme => ({
@@ -50,39 +50,39 @@ const styles = theme => ({
 class AddOption extends Component {
     handleChange = prop => event => {
         const { dispatch } = this.props;
-        dispatch(ModeleAction.onChangeProps(prop, event));
+        dispatch(OptionAction.onChangeProps(prop, event));
     };
     componentDidMount() {
         const { match : { params } } = this.props;
         
         if(params.id){
             const { dispatch } = this.props;
-            dispatch(ModeleAction.getModeleById(params.id));
+            dispatch(OptionAction.getOptionById(params.id));
         }
     }
     handleClick(event){
         const { match : { params } } = this.props;
         const { dispatch } = this.props;
         let payload={
-            nomModele: this.props.nomModele,
-            marqueModele:JSON.parse(localStorage.getItem('user')).marqueid,
-            idModele:12222,
+            nomOption: this.props.nomOption,
+            marqueOption:JSON.parse(localStorage.getItem('user')).marqueid,
+            idOption:12222,
         }
         if(params.id){
-            dispatch(ModeleAction.editModeleInfo(params.id, payload));
+            dispatch(OptionAction.editOptionInfo(params.id, payload));
         }else{
-            dispatch(ModeleAction.createModele(payload));
+            dispatch(OptionAction.createOption(payload));
         }
     }
     render() {
         const { classes } = this.props;
         const { match : { params } } = this.props;
         function InsertText(props) {
-            return <Typography>{'Add New modele'}</Typography>;
+            return <Typography>{'Ajouer une nouvelle Option'}</Typography>;
         }
 
         function EditText(props) {
-            return <Typography>{'Edit modele'}</Typography>;
+            return <Typography>{'Modifer Option'}</Typography>;
         }
         function SegHeader() {
             if(params.id){
@@ -90,7 +90,7 @@ class AddOption extends Component {
             }
             return <InsertText />;
         }
-        const  nomModele  = this.props.nomModele;
+        const  nomOption  = this.props.nomOption;
 
         return (
             
@@ -117,12 +117,22 @@ class AddOption extends Component {
                                 <Grid container spacing={24}>
                                 <Grid item xs={3}>
                                     <TextField
-                                    id="nomModele"
+                                    id="nom"
+                                    label="Nom"
+                                    className={classes.textField}
+                                    value={this.props.option}
+                                margin="normal"
+                                onChange = {this.handleChange('nom')}
+                                    >
+                                    </TextField>
+
+                                     <TextField
+                                    id="code"
                                     label="Name"
                                     className={classes.textField}
-                                    value={nomModele}
+                                    value={this.props.code}
                                 margin="normal"
-                                onChange = {this.handleChange('nomModele')}
+                                onChange = {this.handleChange('code')}
                                     >
                                     </TextField>
                                 </Grid>
@@ -137,10 +147,10 @@ class AddOption extends Component {
                                 <Grid item xs={3} container justify="center">
                                     <Grid container spacing={24}>
                                         <Grid item xs={6} container justify="center">
-                                            <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/modeles">Cancel</Button>
+                                            <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/Options">Annuler</Button>
                                         </Grid>
                                         <Grid item xs={6} container justify="flex-start">
-                                            <Button variant="contained" color="primary" className={classes.button} onClick={(event) => this.handleClick(event)}>Save</Button>
+                                            <Button variant="contained" color="primary" className={classes.button} onClick={(event) => this.handleClick(event)}>Enregistrer</Button>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -160,10 +170,10 @@ AddOption.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) =>{
-    console.log("nameModele")
+    console.log("nameOption")
     return {           
-        idModele : state.Modele.idModele,
-        nomModele:state.Modele.nomModele
+        idOption : state.Option.idOption,
+        nomOption:state.Option.nomOption
     }
 }
 
