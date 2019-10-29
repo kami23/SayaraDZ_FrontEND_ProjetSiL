@@ -19,7 +19,7 @@
     "chartjs": "^0.3.24",
     "clsx": "^1.0.4",
     "faker": "^4.1.0",
-    "jquery": "^1.9.1",
+    "jquery": "^3.4.0",
     "karma": "^4.3.0",
     "karma-chrome-launcher": "^2.2.0",
     "material-table": "^1.50.0",
